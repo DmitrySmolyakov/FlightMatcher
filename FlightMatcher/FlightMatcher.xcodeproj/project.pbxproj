@@ -12,6 +12,13 @@
 		181BF21C1E8E5D680012C09C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 181BF21A1E8E5D680012C09C /* LaunchScreen.storyboard */; };
 		181BF2271E8E5D680012C09C /* FlightMatcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181BF2261E8E5D680012C09C /* FlightMatcherTests.swift */; };
 		181BF2321E8E5D680012C09C /* FlightMatcherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181BF2311E8E5D680012C09C /* FlightMatcherUITests.swift */; };
+		2A9DC77C1E8EB13C00294485 /* Cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A9DC7771E8EB13C00294485 /* Cities.json */; };
+		2A9DC77D1E8EB13C00294485 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9DC7781E8EB13C00294485 /* City.swift */; };
+		2A9DC77E1E8EB13C00294485 /* dataSource.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A9DC7791E8EB13C00294485 /* dataSource.json */; };
+		2A9DC77F1E8EB13C00294485 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A9DC77A1E8EB13C00294485 /* Info.plist */; };
+		2A9DC7801E8EB13C00294485 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A9DC77B1E8EB13C00294485 /* Main.storyboard */; };
+		2A9DC7821E8EB2A200294485 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9DC7811E8EB2A200294485 /* Request.swift */; };
+		2A9DC7841E8EB2C000294485 /* DataGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9DC7831E8EB2C000294485 /* DataGenerator.swift */; };
 		3D31FF8652EFC7353BD4C79E /* Pods_FlightMatcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CD77A23C348C0B41CEBAF75 /* Pods_FlightMatcher.framework */; };
 		53673E88BD793FE0B5E306E2 /* Pods_FlightMatcherUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E07D8C3A11C41B3DD85EB80 /* Pods_FlightMatcherUITests.framework */; };
 		B43A9C7617A788AD5368FE02 /* Pods_FlightMatcherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4A3395C2BF52570D519CF27 /* Pods_FlightMatcherTests.framework */; };
@@ -46,6 +53,13 @@
 		181BF22D1E8E5D680012C09C /* FlightMatcherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlightMatcherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		181BF2311E8E5D680012C09C /* FlightMatcherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightMatcherUITests.swift; sourceTree = "<group>"; };
 		181BF2331E8E5D680012C09C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A9DC7771E8EB13C00294485 /* Cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cities.json; sourceTree = "<group>"; };
+		2A9DC7781E8EB13C00294485 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
+		2A9DC7791E8EB13C00294485 /* dataSource.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dataSource.json; sourceTree = "<group>"; };
+		2A9DC77A1E8EB13C00294485 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A9DC77B1E8EB13C00294485 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		2A9DC7811E8EB2A200294485 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		2A9DC7831E8EB2C000294485 /* DataGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataGenerator.swift; sourceTree = "<group>"; };
 		3CD77A23C348C0B41CEBAF75 /* Pods_FlightMatcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlightMatcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		552E4BED47E092F17CA34B42 /* Pods-FlightMatcher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightMatcher.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlightMatcher/Pods-FlightMatcher.release.xcconfig"; sourceTree = "<group>"; };
 		5E07D8C3A11C41B3DD85EB80 /* Pods_FlightMatcherUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlightMatcherUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,6 +125,13 @@
 			isa = PBXGroup;
 			children = (
 				181BF2111E8E5D680012C09C /* AppDelegate.swift */,
+				2A9DC7771E8EB13C00294485 /* Cities.json */,
+				2A9DC7781E8EB13C00294485 /* City.swift */,
+				2A9DC7811E8EB2A200294485 /* Request.swift */,
+				2A9DC7831E8EB2C000294485 /* DataGenerator.swift */,
+				2A9DC7791E8EB13C00294485 /* dataSource.json */,
+				2A9DC77A1E8EB13C00294485 /* Info.plist */,
+				2A9DC77B1E8EB13C00294485 /* Main.storyboard */,
 				181BF2181E8E5D680012C09C /* Assets.xcassets */,
 				181BF21A1E8E5D680012C09C /* LaunchScreen.storyboard */,
 				181BF21D1E8E5D680012C09C /* Info.plist */,
@@ -278,7 +299,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A9DC77C1E8EB13C00294485 /* Cities.json in Resources */,
 				181BF21C1E8E5D680012C09C /* LaunchScreen.storyboard in Resources */,
+				2A9DC77E1E8EB13C00294485 /* dataSource.json in Resources */,
+				2A9DC7801E8EB13C00294485 /* Main.storyboard in Resources */,
+				2A9DC77F1E8EB13C00294485 /* Info.plist in Resources */,
 				181BF2191E8E5D680012C09C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -442,7 +467,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A9DC77D1E8EB13C00294485 /* City.swift in Sources */,
+				2A9DC7821E8EB2A200294485 /* Request.swift in Sources */,
 				181BF2121E8E5D680012C09C /* AppDelegate.swift in Sources */,
+				2A9DC7841E8EB2C000294485 /* DataGenerator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -695,6 +723,7 @@
 				181BF2381E8E5D680012C09C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		181BF2391E8E5D680012C09C /* Build configuration list for PBXNativeTarget "FlightMatcherTests" */ = {
 			isa = XCConfigurationList;
@@ -703,6 +732,7 @@
 				181BF23B1E8E5D680012C09C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		181BF23C1E8E5D680012C09C /* Build configuration list for PBXNativeTarget "FlightMatcherUITests" */ = {
 			isa = XCConfigurationList;
@@ -711,6 +741,7 @@
 				181BF23E1E8E5D680012C09C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
