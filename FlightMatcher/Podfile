@@ -6,6 +6,7 @@ target 'FlightMatcher' do
   use_frameworks!
 
   pod 'SnapKit'
+  pod 'SwiftyJSON'
 
   target 'FlightMatcherTests' do
     inherit! :search_paths
