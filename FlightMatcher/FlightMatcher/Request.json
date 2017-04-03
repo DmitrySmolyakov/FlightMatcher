@@ -1,12 +1,12 @@
  [
   {
 		"from": {
-            "id": "1",
+            "id": 1,
             "country": "China",
             "city": "Fuzhou"
 		},
 		"to": {
-            "id": "2",
+            "id": 2,
             "country": "China",
             "city": "Nanjing"
 		},
@@ -15,12 +15,12 @@
   },
   {
 		"from": {
-            "id": "3",
+            "id": 3,
             "country": "Japan",
             "city": "Saitama"
 		},
 		"to": {
-            "id": "4",
+            "id": 4,
             "country": "Japan",
             "city": "Nihon'odori"
 		},
@@ -29,12 +29,12 @@
   },
   {
 		"from": {
-            "id": "2",
+            "id": 2,
             "country": "China",
             "city": "Nanjing"
 		},
 		"to": {
-            "id": "1",
+            "id": 1,
             "country": "China",
             "city": "Fuzhou"
 		},
@@ -43,12 +43,12 @@
   },
   {
 		"from": {
-            "id": "4",
+            "id": 4,
             "country": "Japan",
             "city": "Nihon'odori"
 		},
 		"to": {
-            "id": "3",
+            "id": 3,
             "country": "Japan",
             "city": "Saitama"
 		},
