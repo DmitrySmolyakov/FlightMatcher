@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class FlightMatchCell: UITableViewCell {
     
@@ -33,4 +34,19 @@ class FlightMatchCell: UITableViewCell {
         return localDate
     }
 
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        makeConstraints()
+    }
+
+    func makeConstraints() {
+        let views = [fromToLabel, dateLabel, flightLabel]
+
+        for view in views {
+            view?.snp.makeConstraints { (make) -> Void in
+                make.leading.equalTo(superview!).offset(20)
+                make.trailing.equalTo(superview!).offset(20)
+            }
+        }
+    }
 }
