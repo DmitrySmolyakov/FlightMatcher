@@ -1,0 +1,58 @@
+ [
+  {
+		"from": {
+            "id": 1,
+            "country": "China",
+            "city": "Fuzhou"
+		},
+		"to": {
+            "id": 2,
+            "country": "China",
+            "city": "Nanjing"
+		},
+		"flightNumber": "23323",
+		"date": "323254542"
+  },
+  {
+		"from": {
+            "id": 3,
+            "country": "Japan",
+            "city": "Saitama"
+		},
+		"to": {
+            "id": 4,
+            "country": "Japan",
+            "city": "Nihon'odori"
+		},
+		"flightNumber": "23324",
+		"date": "323254542"
+  },
+  {
+		"from": {
+            "id": 2,
+            "country": "China",
+            "city": "Nanjing"
+		},
+		"to": {
+            "id": 1,
+            "country": "China",
+            "city": "Fuzhou"
+		},
+		"flightNumber": "23325",
+		"date": "323254542"
+  },
+  {
+		"from": {
+            "id": 4,
+            "country": "Japan",
+            "city": "Nihon'odori"
+		},
+		"to": {
+            "id": 3,
+            "country": "Japan",
+            "city": "Saitama"
+		},
+		"flightNumber": "23326",
+		"date": "323254542"
+  }
+]
