@@ -41,15 +41,14 @@ extension Location {
             var locations: [Location]? = [Location]()
             var cityId = 0
             
-            for (country,cities):(String, JSON) in json {
-                for (_,city):(String, JSON) in cities {
+            for (country, cities):(String, JSON) in json {
+                for (_, city):(String, JSON) in cities {
                     guard let city = city.string else {
                         return nil
                     }
                     let location = Location(id: cityId, city: city, country: country)
                         locations?.append(location)
-                        cityId+=1
-                    
+                        cityId += 1
                 }
             }
         } catch {
