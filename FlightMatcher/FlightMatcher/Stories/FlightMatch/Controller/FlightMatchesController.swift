@@ -9,30 +9,38 @@
 import UIKit
 
 class FlightMatchesController: UIViewController {
+
+    @IBOutlet weak var tableView: UITableView!
     
+    var dataSource: [Request]? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        dataSource = getRequests()
+    }
+
+    func getRequests() -> [Request]? {
+        if let url = Bundle.main.url(forResource: "Request", withExtension: "json") {
+            return Request.getRequests(url: url)
+        }
+        return nil
+    }
 }
 
 extension FlightMatchesController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let requests = dataSource()?.count {
-            return requests
-        } else {
-            return 0
-        }
+        return dataSource?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FlightMatchCell.reuseIdentifier(), for: indexPath) as! FlightMatchCell
-        let request = dataSource()?[indexPath.row]
-        cell.configure(withItem: request as Any)
+        let request = dataSource?[indexPath.row]
+        cell.configure(item: request!)
         return cell
-    }
-    
-    func dataSource() -> [Request]? {
-        if let url = Bundle.main.url(forResource: "Request", withExtension: "json") {
-            return Request.getRequests(url: url)
-        }
-        return nil
     }
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		181BF2271E8E5D680012C09C /* FlightMatcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181BF2261E8E5D680012C09C /* FlightMatcherTests.swift */; };
 		181BF2321E8E5D680012C09C /* FlightMatcherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181BF2311E8E5D680012C09C /* FlightMatcherUITests.swift */; };
+		2A76B1301E93A71F003C67C2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A76B12F1E93A71F003C67C2 /* Extensions.swift */; };
 		2A7AB5731E929E9E00007D1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7AB55F1E929E9E00007D1D /* AppDelegate.swift */; };
 		2A7AB5741E929E9E00007D1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A7AB5621E929E9E00007D1D /* Assets.xcassets */; };
 		2A7AB5751E929E9E00007D1D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A7AB5631E929E9E00007D1D /* LaunchScreen.storyboard */; };
@@ -50,6 +51,7 @@
 		181BF22D1E8E5D680012C09C /* FlightMatcherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlightMatcherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		181BF2311E8E5D680012C09C /* FlightMatcherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightMatcherUITests.swift; sourceTree = "<group>"; };
 		181BF2331E8E5D680012C09C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A76B12F1E93A71F003C67C2 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Base/Extensions.swift; sourceTree = "<group>"; };
 		2A7AB55F1E929E9E00007D1D /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A7AB5621E929E9E00007D1D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A7AB5641E929E9E00007D1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 			children = (
 				2A7AB5611E929E9E00007D1D /* Base */,
 				2A7AB5661E929E9E00007D1D /* FlightMatch */,
+				2A76B12F1E93A71F003C67C2 /* Extensions.swift */,
 			);
 			path = Stories;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A7AB5731E929E9E00007D1D /* AppDelegate.swift in Sources */,
+				2A76B1301E93A71F003C67C2 /* Extensions.swift in Sources */,
 				2A7AB57C1E929E9E00007D1D /* FlightMatchCell.swift in Sources */,
 				2A7AB57B1E929E9E00007D1D /* Request.swift in Sources */,
 				2A7AB57A1E929E9E00007D1D /* Location.swift in Sources */,

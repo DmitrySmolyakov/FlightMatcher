@@ -19,19 +19,10 @@ class FlightMatchCell: UITableViewCell {
         return String(describing: FlightMatchCell.self)
     }
     
-    func configure(withItem item: Any) {
-        let request = item as! Request
-        self.fromToLabel.text = request.from.country + " " + request.from.city + " - " + request.to.country + " " + request.to.city
-        self.dateLabel.text = formatUnixTime(date: request.date)
-        self.flightLabel.text = "\(request.flightNumber)"
-    }
-    
-    func formatUnixTime(date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeStyle = DateFormatter.Style.medium
-        dateFormatter.dateStyle = DateFormatter.Style.medium
-        let localDate = dateFormatter.string(from: date)
-        return localDate
+    func configure(item: Request) {
+        self.fromToLabel.text = "\(item.from.country) \(item.from.city) - \(item.to.country) \(item.to.city)"
+        self.dateLabel.text = item.date.formatUnixTime()
+        self.flightLabel.text = "\(item.flightNumber)"
     }
 
     required init?(coder aDecoder: NSCoder) {
