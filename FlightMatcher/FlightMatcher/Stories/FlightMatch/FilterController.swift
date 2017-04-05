@@ -11,14 +11,8 @@ import UIKit
 class FilterController: UIViewController {
     
     var filterView = FilterView()
-    var cities: [String]? {
-        didSet {
-            //print("RECEIVE")
-        }
-    }
-    
-    var locations: [Location]?
-    
+    var cities: [String]?
+ 
     override func loadView() {
         super.loadView()
         self.view = filterView
@@ -30,7 +24,6 @@ class FilterController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-
        Location.getCities { (parsedCities) in
             self.cities = parsedCities
         }
@@ -79,7 +72,7 @@ extension FilterController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-            filterView.cityFromLabel?.text = cities?[row]
+        filterView.cityFromField?.text = cities?[row]
     }
     
     func setupPicker() {

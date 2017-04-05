@@ -62,10 +62,10 @@ class FilterView: UIView {
     private func setPickers() {
         cityPicker = UIPickerView()
         datePicker = UIDatePicker()
+        datePicker?.datePickerMode = .dateAndTime
     }
     
     private func setFlightElements() {
-        
         flightNumberLabel = UILabel()
         flightNumberField = UITextField()
         
@@ -93,7 +93,6 @@ class FilterView: UIView {
     }
 
     private func setDateElements() {
-        
         dateFromLabel = UILabel()
         dateToLabel = UILabel()
         dateFromField = UITextField()
