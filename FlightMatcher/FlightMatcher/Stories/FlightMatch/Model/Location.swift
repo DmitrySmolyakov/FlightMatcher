@@ -30,9 +30,11 @@ class Location {
 }
 
 extension Location {
-    public class func parse(file: String) -> [Location]? {
+    
+    public class func parse(file: String, success:@escaping ([Location]?) -> Void, failure:@escaping (String) -> Void) {
         guard let file = Bundle.main.url(forResource: file, withExtension: "json") else {
-            return nil
+            failure("Error in path")
+            return
         }
         do {
             let data = try Data(contentsOf: file)
@@ -44,16 +46,29 @@ extension Location {
             for (country, cities):(String, JSON) in json {
                 for (_, city):(String, JSON) in cities {
                     guard let city = city.string else {
-                        return nil
+                        failure("City is not found")
+                        return
                     }
                     let location = Location(id: cityId, city: city, country: country)
                         locations?.append(location)
                         cityId += 1
                 }
             }
+            success(locations)
         } catch {
-            print(error.localizedDescription)
+            failure("Parse error")
         }
-        return nil
+    }
+    
+    public class func getCities(success:@escaping ([String]?) -> Void) {
+        parse(file: "Cities", success: { locations in
+            var cities = [String]()
+            for location in locations! {
+                cities.append(location.city)
+            }
+            success(cities)
+        }, failure: { error in
+            print(error)
+        })
     }
 }

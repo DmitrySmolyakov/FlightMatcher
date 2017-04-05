@@ -11,6 +11,9 @@ import UIKit
 class FlightMatchesController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBAction func filter(_ sender: UIButton) {
+        self.presentModally(FilterController())
+    }
     
     var dataSource: [Request]? {
         didSet {
@@ -31,7 +34,7 @@ class FlightMatchesController: UIViewController {
     }
 }
 
-extension FlightMatchesController: UITableViewDataSource {
+extension FlightMatchesController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource?.count ?? 0
@@ -42,5 +45,8 @@ extension FlightMatchesController: UITableViewDataSource {
         let request = dataSource?[indexPath.row]
         cell.configure(item: request!)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     }
 }

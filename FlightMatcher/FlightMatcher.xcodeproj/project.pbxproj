@@ -15,14 +15,16 @@
 		2A7AB5751E929E9E00007D1D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A7AB5631E929E9E00007D1D /* LaunchScreen.storyboard */; };
 		2A7AB5761E929E9E00007D1D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A7AB5651E929E9E00007D1D /* Main.storyboard */; };
 		2A7AB5771E929E9E00007D1D /* FlightMatchesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7AB5681E929E9E00007D1D /* FlightMatchesController.swift */; };
-		2A7AB5781E929E9E00007D1D /* Cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A7AB56B1E929E9E00007D1D /* Cities.json */; };
 		2A7AB5791E929E9E00007D1D /* Request.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A7AB56C1E929E9E00007D1D /* Request.json */; };
 		2A7AB57A1E929E9E00007D1D /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7AB56D1E929E9E00007D1D /* Location.swift */; };
 		2A7AB57B1E929E9E00007D1D /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7AB56E1E929E9E00007D1D /* Request.swift */; };
 		2A7AB57C1E929E9E00007D1D /* FlightMatchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7AB5701E929E9E00007D1D /* FlightMatchCell.swift */; };
-		2A7AB57D1E929E9E00007D1D /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2A7AB5721E929E9E00007D1D /* Info.plist */; };
 		3D31FF8652EFC7353BD4C79E /* Pods_FlightMatcher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CD77A23C348C0B41CEBAF75 /* Pods_FlightMatcher.framework */; };
 		53673E88BD793FE0B5E306E2 /* Pods_FlightMatcherUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E07D8C3A11C41B3DD85EB80 /* Pods_FlightMatcherUITests.framework */; };
+		A1AC8C271E950F9800ADA096 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AC8C261E950F9800ADA096 /* Constants.swift */; };
+		A1AC8C291E9515CB00ADA096 /* Cities.json in Resources */ = {isa = PBXBuildFile; fileRef = A1AC8C281E9515CB00ADA096 /* Cities.json */; };
+		A1FC22D01E93D67A00463899 /* FilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC22CF1E93D67A00463899 /* FilterController.swift */; };
+		A1FC22D31E93D74000463899 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC22D21E93D74000463899 /* FilterView.swift */; };
 		B43A9C7617A788AD5368FE02 /* Pods_FlightMatcherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4A3395C2BF52570D519CF27 /* Pods_FlightMatcherTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,7 +59,6 @@
 		2A7AB5641E929E9E00007D1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A7AB5651E929E9E00007D1D /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		2A7AB5681E929E9E00007D1D /* FlightMatchesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightMatchesController.swift; sourceTree = "<group>"; };
-		2A7AB56B1E929E9E00007D1D /* Cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cities.json; sourceTree = "<group>"; };
 		2A7AB56C1E929E9E00007D1D /* Request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Request.json; sourceTree = "<group>"; };
 		2A7AB56D1E929E9E00007D1D /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		2A7AB56E1E929E9E00007D1D /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
@@ -69,6 +70,10 @@
 		642BD41397FB20210884E351 /* Pods-FlightMatcher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightMatcher.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlightMatcher/Pods-FlightMatcher.debug.xcconfig"; sourceTree = "<group>"; };
 		6825663D59011820EFE92071 /* Pods-FlightMatcherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightMatcherTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlightMatcherTests/Pods-FlightMatcherTests.release.xcconfig"; sourceTree = "<group>"; };
 		864A89F7312808FF42D1063A /* Pods-FlightMatcherUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightMatcherUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlightMatcherUITests/Pods-FlightMatcherUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A1AC8C261E950F9800ADA096 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A1AC8C281E9515CB00ADA096 /* Cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cities.json; sourceTree = "<group>"; };
+		A1FC22CF1E93D67A00463899 /* FilterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterController.swift; path = FlightMatch/FilterController.swift; sourceTree = "<group>"; };
+		A1FC22D21E93D74000463899 /* FilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		A3D673D6967B2ABC679CB312 /* Pods-FlightMatcherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightMatcherTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlightMatcherTests/Pods-FlightMatcherTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E4A3395C2BF52570D519CF27 /* Pods_FlightMatcherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlightMatcherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF03FDF59AFF7C2A09EEF90A /* Pods-FlightMatcherUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightMatcherUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlightMatcherUITests/Pods-FlightMatcherUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -175,7 +180,9 @@
 			children = (
 				2A7AB5611E929E9E00007D1D /* Base */,
 				2A7AB5661E929E9E00007D1D /* FlightMatch */,
+				A1FC22D11E93D68400463899 /* Filter */,
 				2A76B12F1E93A71F003C67C2 /* Extensions.swift */,
+				A1AC8C261E950F9800ADA096 /* Constants.swift */,
 			);
 			path = Stories;
 			sourceTree = "<group>";
@@ -221,8 +228,8 @@
 		2A7AB56A1E929E9E00007D1D /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				2A7AB56B1E929E9E00007D1D /* Cities.json */,
 				2A7AB56C1E929E9E00007D1D /* Request.json */,
+				A1AC8C281E9515CB00ADA096 /* Cities.json */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -241,6 +248,15 @@
 				2A7AB5721E929E9E00007D1D /* Info.plist */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A1FC22D11E93D68400463899 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				A1FC22D21E93D74000463899 /* FilterView.swift */,
+				A1FC22CF1E93D67A00463899 /* FilterController.swift */,
+			);
+			name = Filter;
 			sourceTree = "<group>";
 		};
 		BFF78A68D23970DF107CE6AD /* Pods */ = {
@@ -375,10 +391,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A7AB5781E929E9E00007D1D /* Cities.json in Resources */,
 				2A7AB5761E929E9E00007D1D /* Main.storyboard in Resources */,
-				2A7AB57D1E929E9E00007D1D /* Info.plist in Resources */,
 				2A7AB5741E929E9E00007D1D /* Assets.xcassets in Resources */,
+				A1AC8C291E9515CB00ADA096 /* Cities.json in Resources */,
 				2A7AB5751E929E9E00007D1D /* LaunchScreen.storyboard in Resources */,
 				2A7AB5791E929E9E00007D1D /* Request.json in Resources */,
 			);
@@ -547,8 +562,11 @@
 				2A76B1301E93A71F003C67C2 /* Extensions.swift in Sources */,
 				2A7AB57C1E929E9E00007D1D /* FlightMatchCell.swift in Sources */,
 				2A7AB57B1E929E9E00007D1D /* Request.swift in Sources */,
+				A1FC22D31E93D74000463899 /* FilterView.swift in Sources */,
 				2A7AB57A1E929E9E00007D1D /* Location.swift in Sources */,
 				2A7AB5771E929E9E00007D1D /* FlightMatchesController.swift in Sources */,
+				A1FC22D01E93D67A00463899 /* FilterController.swift in Sources */,
+				A1AC8C271E950F9800ADA096 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
