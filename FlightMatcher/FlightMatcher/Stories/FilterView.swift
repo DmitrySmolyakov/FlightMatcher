@@ -9,34 +9,43 @@
 import UIKit
 import SnapKit
 
-class FilterView: UIView {
+protocol FilterViewDelegate {
+    func filterDidPressed()
+}
 
-    var contentView: UIScrollView?
-    var resizableView: UIView?
+class FilterView: UIView {
     
-    var cityFromField: UITextField?
-    var cityFromLabel: UILabel?
-    var cityToField: UITextField?
-    var cityToLabel: UILabel?
-    var cityPicker: UIPickerView?
+    var delegate: FilterViewDelegate?
+
+    let contentView = UIScrollView()
+    let resizableView = UIView()
     
-    var datePicker: UIDatePicker?
-    var dateFromLabel: UILabel?
-    var dateToLabel: UILabel?
-    var dateFromField: UITextField?
-    var dateToField: UITextField?
+    let cityFromField = UITextField()
+    let cityFromLabel = UILabel()
+    let cityToField = UITextField()
+    let cityToLabel = UILabel()
     
-    var flightNumberLabel: UILabel?
-    var flightNumberField: UITextField?
+    let cityFromPicker = UIPickerView()
+    let cityToPicker = UIPickerView()
     
-    var filterButton: UIButton?
+    let dateFromPicker = UIDatePicker()
+    let dateToPicker = UIDatePicker()
+    
+    let dateFromLabel = UILabel()
+    let dateToLabel = UILabel()
+    let dateFromField = UITextField()
+    let dateToField = UITextField()
+    
+    let flightNumberLabel = UILabel()
+    let flightNumberField = UITextField()
+    
+    let filterButton = UIButton()
     
     private func setContentView() {
-        contentView = UIScrollView()
-        contentView?.isScrollEnabled = true
-        self.addSubview(contentView!)
+        contentView.isScrollEnabled = true
+        self.addSubview(contentView)
         
-        contentView?.snp.makeConstraints { (make) -> Void in
+        contentView.snp.makeConstraints { (make) -> Void in
             make.top.equalToSuperview()
             make.bottom.equalToSuperview()
             make.leading.equalToSuperview()
@@ -45,11 +54,10 @@ class FilterView: UIView {
     }
     
     private func setResizableView() {
-        resizableView = UIView()
-        resizableView?.backgroundColor = UIColor.white
-        contentView?.addSubview(resizableView!)
+        resizableView.backgroundColor = UIColor.white
+        contentView.addSubview(resizableView)
         
-        resizableView?.snp.makeConstraints({ (make) in
+        resizableView.snp.makeConstraints({ (make) in
             make.top.equalToSuperview()
             make.bottom.equalToSuperview()
             make.leading.equalToSuperview()
@@ -60,161 +68,166 @@ class FilterView: UIView {
     }
     
     private func setPickers() {
-        cityPicker = UIPickerView()
-        datePicker = UIDatePicker()
-        datePicker?.datePickerMode = .dateAndTime
+        dateFromPicker.datePickerMode = .dateAndTime
+        dateFromPicker.minimumDate = Date()
+        dateFromPicker.maximumDate = Date(timeInterval: Time.month!*3, since: Date())
+        dateFromPicker.date = dateFromPicker.minimumDate!
+        
+        dateToPicker.datePickerMode = .dateAndTime
+        dateToPicker.minimumDate = Date(timeInterval: Time.hour!*2, since: Date())
+        dateToPicker.maximumDate = Date(timeInterval: Time.month!*6, since: Date())
+        dateToPicker.date = dateToPicker.minimumDate!
+        
+        dateToPicker.addTarget(self, action: #selector(handleDateToPicker(sender:)), for: UIControlEvents.valueChanged)
+        dateFromPicker.addTarget(self, action: #selector(handleDateFromPicker(sender:)), for: UIControlEvents.valueChanged)
     }
     
     private func setFlightElements() {
-        flightNumberLabel = UILabel()
-        flightNumberField = UITextField()
+        flightNumberLabel.textColor = UIColor.blue
+        flightNumberLabel.textAlignment = .center
+        flightNumberLabel.font = UIFont.systemFont(ofSize: 20)
+        contentView.addSubview(flightNumberLabel)
         
-        flightNumberLabel?.textColor = UIColor.blue
-        flightNumberLabel?.textAlignment = .center
-        flightNumberLabel?.font = UIFont.systemFont(ofSize: 20)
-        contentView?.addSubview(flightNumberLabel!)
+        flightNumberField.textAlignment = .center
+        contentView.addSubview(flightNumberField)
         
-        flightNumberField?.textAlignment = .center
-        contentView?.addSubview(flightNumberField!)
+        flightNumberLabel.text = "Flight number"
+        flightNumberField.text = "Not choosen"
         
-        flightNumberLabel?.text = "Flight number"
-        flightNumberField?.text = "Not choosen"
-        
-        flightNumberLabel?.snp.makeConstraints({ (make) in
+        flightNumberLabel.snp.makeConstraints({ (make) in
             make.centerX.equalToSuperview()
-            make.top.equalTo(dateFromField!).offset(50)
+            make.top.equalTo(dateFromField).offset(50)
         })
         
-        flightNumberField?.snp.makeConstraints({ (make) in
-            make.centerX.equalTo(flightNumberLabel!)
-            make.top.equalTo(flightNumberLabel!).offset(30)
+        flightNumberField.snp.makeConstraints({ (make) in
+            make.centerX.equalTo(flightNumberLabel)
+            make.top.equalTo(flightNumberLabel).offset(30)
         })
-        
     }
 
     private func setDateElements() {
-        dateFromLabel = UILabel()
-        dateToLabel = UILabel()
-        dateFromField = UITextField()
-        dateToField = UITextField()
-        
-        let annotationLabels = [dateFromLabel!, dateToLabel!]
+        let annotationLabels = [dateFromLabel, dateToLabel]
         for label in annotationLabels {
             label.textColor = UIColor.blue
             label.textAlignment = .center
             label.font = UIFont.systemFont(ofSize: 20)
-            contentView?.addSubview(label)
+            contentView.addSubview(label)
         }
         
         let fields = [dateToField, dateFromField]
         for field in fields {
-            field?.textAlignment = .center
-            field?.isUserInteractionEnabled = true
-            contentView?.addSubview(field!)
+            field.textAlignment = .center
+            field.isUserInteractionEnabled = true
+            contentView.addSubview(field)
         }
         
-        dateFromLabel?.text = "From date"
-        dateToLabel?.text = "To date"
+        dateFromLabel.text = "From date"
+        dateToLabel.text = "To date"
         
-        dateFromField?.text = "Not choosen"
-        dateToField?.text = "Not choosen"
+        dateFromField.text = "Not choosen"
+        dateToField.text = "Not choosen"
         
-        dateFromLabel?.snp.makeConstraints { (make) -> Void in
+        dateFromLabel.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview().offset(30)
-            make.top.equalTo(cityFromField!).offset(70)
+            make.top.equalTo(cityFromField).offset(70)
             make.width.greaterThanOrEqualTo(100)
         }
         
-        dateToLabel?.snp.makeConstraints { (make) -> Void in
+        dateToLabel.snp.makeConstraints { (make) -> Void in
             make.right.equalToSuperview().offset(-30)
-            make.top.equalTo(cityToField!).offset(70)
+            make.top.equalTo(cityToField).offset(70)
             make.width.greaterThanOrEqualTo(100)
         }
         
-        dateFromField?.snp.makeConstraints { (make) -> Void in
-            make.centerX.equalTo(dateFromLabel!)
-            make.top.equalTo(dateFromLabel!).offset(30)
+        dateFromField.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalTo(dateFromLabel)
+            make.top.equalTo(dateFromLabel).offset(30)
         }
         
-        dateToField?.snp.makeConstraints { (make) -> Void in
-            make.centerX.equalTo(dateToLabel!)
-            make.top.equalTo(dateToLabel!).offset(30)
+        dateToField.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalTo(dateToLabel)
+            make.top.equalTo(dateToLabel).offset(30)
         }
         
-        dateFromField?.inputView = datePicker
-        dateToField?.inputView = datePicker
-        
+        dateFromField.inputView = dateFromPicker
+        dateToField.inputView = dateToPicker
     }
     
     private func setCityElements() {
-        cityFromLabel = UILabel()
-        cityToLabel = UILabel()
-        cityFromField = UITextField()
-        cityToField = UITextField()
-        
-        let annotationLabels = [cityToLabel!, cityFromLabel!]
+        let annotationLabels = [cityToLabel, cityFromLabel]
         for label in annotationLabels {
             label.textColor = UIColor.blue
             label.textAlignment = .center
             label.font = UIFont.systemFont(ofSize: 20)
-            contentView?.addSubview(label)
+            contentView.addSubview(label)
         }
         
-        let fields = [cityToField!, cityFromField!]
+        let fields = [cityToField, cityFromField]
         for field in fields {
             field.textAlignment = .center
             field.isUserInteractionEnabled = true
             field.allowsEditingTextAttributes = false
-            contentView?.addSubview(field)
+            contentView.addSubview(field)
         }
         
-        cityFromLabel?.text = "From city"
-        cityToLabel?.text = "To city"
+        cityFromLabel.text = "From city"
+        cityToLabel.text = "To city"
         
-        cityFromField?.text = "Not choosen"
-        cityToField?.text = "Not choosen"
+        cityFromField.text = "Not choosen"
+        cityToField.text = "Not choosen"
 
-        cityFromLabel?.snp.makeConstraints { (make) -> Void in
+        cityFromLabel.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview().offset(30)
             make.top.equalToSuperview().offset(95)
             make.width.greaterThanOrEqualTo(100)
         }
         
-        cityToLabel?.snp.makeConstraints { (make) -> Void in
+        cityToLabel.snp.makeConstraints { (make) -> Void in
             make.right.equalToSuperview().offset(-30)
-            make.top.equalTo(cityFromLabel!)
+            make.top.equalTo(cityFromLabel)
             make.width.greaterThanOrEqualTo(100)
         }
         
-        cityFromField?.snp.makeConstraints { (make) -> Void in
-            make.centerX.equalTo(cityFromLabel!)
-            make.top.equalTo(cityFromLabel!).offset(30)
+        cityFromField.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalTo(cityFromLabel)
+            make.top.equalTo(cityFromLabel).offset(30)
         }
         
-        cityToField?.snp.makeConstraints { (make) -> Void in
-            make.centerX.equalTo(cityToLabel!)
-            make.top.equalTo(cityToLabel!).offset(30)
+        cityToField.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalTo(cityToLabel)
+            make.top.equalTo(cityToLabel).offset(30)
         }
         
-        cityFromField?.inputView = cityPicker
-        cityToField?.inputView = cityPicker
-        
+        cityFromField.inputView = cityFromPicker
+        cityToField.inputView = cityToPicker
     }
     
     func setFilterButton() {
-        filterButton = UIButton(type: .system)
-        contentView?.addSubview(filterButton!)
+        contentView.addSubview(filterButton)
         
-        filterButton?.setTitleColor(UIColor.blue, for: .normal)
-        filterButton?.showsTouchWhenHighlighted = true
-        filterButton?.setTitle("Filter", for: .normal)
-        filterButton?.titleLabel?.font = UIFont.systemFont(ofSize: 38)
+        filterButton.setTitleColor(UIColor.blue, for: .normal)
+        filterButton.showsTouchWhenHighlighted = true
+        filterButton.setTitle("Filter", for: .normal)
+        filterButton.titleLabel?.font = UIFont.systemFont(ofSize: 38)
 
-        filterButton?.snp.makeConstraints({ (make) in
+        filterButton.snp.makeConstraints({ (make) in
             make.centerX.equalToSuperview()
-            make.top.equalTo(dateFromField!).offset(150)
+            make.top.equalTo(dateFromField).offset(150)
         })
         
+        filterButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+    }
+    
+    func buttonTapped() {
+        self.delegate?.filterDidPressed()
+    }
+    
+    func handleDateToPicker(sender: UIDatePicker) {
+        dateToField.text = dateToPicker.date.toString(withFormat: "MMM d, h:mm a")
+    }
+    
+    func handleDateFromPicker(sender: UIDatePicker) {
+        dateFromField.text = dateFromPicker.date.toString(withFormat: "MMM d, h:mm a")
     }
     
     init() {

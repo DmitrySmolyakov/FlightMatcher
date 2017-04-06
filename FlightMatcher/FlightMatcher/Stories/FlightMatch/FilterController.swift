@@ -32,29 +32,47 @@ class FilterController: UIViewController {
     func setupController() {
         setupPicker()
         setupFields()
-
-        filterView.filterButton?.addTarget(self, action: #selector(filterPressed), for: .touchUpInside)
+        filterView.delegate = self
     }
+}
+
+extension FilterController: FilterViewDelegate {
     
-    func filterPressed(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+    func filterDidPressed() {
+        dismiss(animated: true, completion: nil)
     }
-
 }
 
 extension FilterController: UITextFieldDelegate {
     
     func setupFields() {
-        filterView.cityFromField?.delegate = self
-        filterView.cityToField?.delegate = self
-        filterView.dateFromField?.delegate = self
-        filterView.dateToField?.delegate = self
+        filterView.cityFromField.delegate = self
+        filterView.cityToField.delegate = self
+        filterView.dateFromField.delegate = self
+        filterView.dateToField.delegate = self
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return false
     }
-
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        switch textField {
+        case filterView.cityToField:
+            filterView.cityToPicker.selectRow(0, inComponent: 0, animated: true)
+            self.pickerView(filterView.cityToPicker, didSelectRow: 0, inComponent: 0)
+        case filterView.cityFromField:
+            filterView.cityFromPicker.selectRow(0, inComponent: 0, animated: true)
+            self.pickerView(filterView.cityFromPicker, didSelectRow: 0, inComponent: 0)
+        case filterView.dateFromField:
+            filterView.dateFromField.text = filterView.dateFromPicker.minimumDate?.toString(withFormat: "MMM d, h:mm a")
+        case filterView.dateToField:
+            filterView.dateToField.text = filterView.dateToPicker.minimumDate?.toString(withFormat: "MMM d, h:mm a")
+        default:
+            break
+        }
+    }
 }
 
 extension FilterController: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -72,12 +90,23 @@ extension FilterController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        filterView.cityFromField?.text = cities?[row]
+        
+        switch pickerView {
+        case filterView.cityFromPicker:
+            filterView.cityFromField.text = cities?[row]
+        case filterView.cityToPicker:
+            filterView.cityToField.text = cities?[row]
+        default:
+            break
+        }
     }
     
     func setupPicker() {
-        filterView.cityPicker?.delegate = self
-        filterView.cityPicker?.dataSource = self
+        filterView.cityToPicker.delegate = self
+        filterView.cityToPicker.dataSource = self
+        
+        filterView.cityFromPicker.delegate = self
+        filterView.cityFromPicker.dataSource = self
     }
 }
 
