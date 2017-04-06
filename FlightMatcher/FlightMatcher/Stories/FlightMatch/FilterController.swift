@@ -66,9 +66,13 @@ extension FilterController: UITextFieldDelegate {
             filterView.cityFromPicker.selectRow(0, inComponent: 0, animated: true)
             self.pickerView(filterView.cityFromPicker, didSelectRow: 0, inComponent: 0)
         case filterView.dateFromField:
-            filterView.dateFromField.text = filterView.dateFromPicker.minimumDate?.toString(withFormat: "MMM d, h:mm a")
+            if filterView.dateFromField.text == "Not choosen" {
+                filterView.dateFromField.text = filterView.dateFromPicker.minimumDate?.toString(withFormat: "MMM d, h:mm a")
+            }
         case filterView.dateToField:
-            filterView.dateToField.text = filterView.dateToPicker.minimumDate?.toString(withFormat: "MMM d, h:mm a")
+            if filterView.dateToField.text == "Not choosen" {
+                filterView.dateToField.text = filterView.dateToPicker.minimumDate?.toString(withFormat: "MMM d, h:mm a")
+            }
         default:
             break
         }
