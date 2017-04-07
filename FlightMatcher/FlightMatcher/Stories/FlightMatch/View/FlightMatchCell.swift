@@ -20,9 +20,9 @@ class FlightMatchCell: UITableViewCell {
     }
     
     func configure(item: Request) {
-        self.fromToLabel.text = "\(item.from.country) \(item.from.city) - \(item.to.country) \(item.to.city)"
-        self.dateLabel.text = item.date.formatUnixTime()
-        self.flightLabel.text = "\(item.flightNumber)"
+        fromToLabel.text = "\(item.from.country) \(item.from.city) - \(item.to.country) \(item.to.city)"
+        dateLabel.text = "\(item.dateFrom.formatUnixTime()) - \(item.dateTo.formatUnixTime()) "
+        flightLabel.text = "\(item.flightNumber)"
     }
 
     required init?(coder aDecoder: NSCoder) {

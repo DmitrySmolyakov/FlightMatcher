@@ -9,13 +9,13 @@
 import UIKit
 import SnapKit
 
-protocol FilterViewDelegate {
-    func filterDidPressed()
+protocol FilterViewDelegate: class {
+    func filterViewDidPressedFilterButton(_ filterView: FilterView)
 }
 
 class FilterView: UIView {
     
-    var delegate: FilterViewDelegate?
+    weak var delegate: FilterViewDelegate?
 
     let contentView = UIScrollView()
     let resizableView = UIView()
@@ -54,7 +54,7 @@ class FilterView: UIView {
     }
     
     private func setResizableView() {
-        resizableView.backgroundColor = UIColor.white
+        resizableView.backgroundColor = .white
         contentView.addSubview(resizableView)
         
         resizableView.snp.makeConstraints({ (make) in
@@ -78,12 +78,12 @@ class FilterView: UIView {
         dateToPicker.maximumDate = Date(timeInterval: Time.month!*6, since: Date())
         dateToPicker.date = dateToPicker.minimumDate!
         
-        dateToPicker.addTarget(self, action: #selector(handleDateToPicker(sender:)), for: UIControlEvents.valueChanged)
-        dateFromPicker.addTarget(self, action: #selector(handleDateFromPicker(sender:)), for: UIControlEvents.valueChanged)
+        dateToPicker.addTarget(self, action: #selector(handleDateToPicker(sender:)), for: .valueChanged)
+        dateFromPicker.addTarget(self, action: #selector(handleDateFromPicker(sender:)), for: .valueChanged)
     }
     
     private func setFlightElements() {
-        flightNumberLabel.textColor = UIColor.blue
+        flightNumberLabel.textColor = .blue
         flightNumberLabel.textAlignment = .center
         flightNumberLabel.font = UIFont.systemFont(ofSize: 20)
         contentView.addSubview(flightNumberLabel)
@@ -108,7 +108,7 @@ class FilterView: UIView {
     private func setDateElements() {
         let annotationLabels = [dateFromLabel, dateToLabel]
         for label in annotationLabels {
-            label.textColor = UIColor.blue
+            label.textColor = .blue
             label.textAlignment = .center
             label.font = UIFont.systemFont(ofSize: 20)
             contentView.addSubview(label)
@@ -156,7 +156,7 @@ class FilterView: UIView {
     private func setCityElements() {
         let annotationLabels = [cityToLabel, cityFromLabel]
         for label in annotationLabels {
-            label.textColor = UIColor.blue
+            label.textColor = .blue
             label.textAlignment = .center
             label.font = UIFont.systemFont(ofSize: 20)
             contentView.addSubview(label)
@@ -205,7 +205,7 @@ class FilterView: UIView {
     func setFilterButton() {
         contentView.addSubview(filterButton)
         
-        filterButton.setTitleColor(UIColor.blue, for: .normal)
+        filterButton.setTitleColor(.blue, for: .normal)
         filterButton.showsTouchWhenHighlighted = true
         filterButton.setTitle("Filter", for: .normal)
         filterButton.titleLabel?.font = UIFont.systemFont(ofSize: 38)
@@ -219,7 +219,7 @@ class FilterView: UIView {
     }
     
     func buttonTapped() {
-        self.delegate?.filterDidPressed()
+        self.delegate?.filterViewDidPressedFilterButton(self)
     }
     
     func handleDateToPicker(sender: UIDatePicker) {
@@ -232,7 +232,7 @@ class FilterView: UIView {
     
     init() {
         super.init(frame: UIScreen.main.bounds);
-        self.backgroundColor = UIColor.white
+        self.backgroundColor = .white
         setContentView()
         setResizableView()
         setPickers()

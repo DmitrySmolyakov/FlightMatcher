@@ -13,14 +13,16 @@ class Request {
     let id: Int
     let from: Location
     let to: Location
-    let date: Date
+    let dateFrom: Date
+    let dateTo: Date
     let flightNumber: Int
     
-    init(id: Int, from: Location, to: Location, date: Date, flightNumber: Int) {
+    init(id: Int, from: Location, to: Location, dateFrom: Date, dateTo: Date, flightNumber: Int) {
         self.id = id
         self.from = from
         self.to = to
-        self.date = date
+        self.dateFrom = dateFrom
+        self.dateTo = dateTo
         self.flightNumber = flightNumber
     }
 }
@@ -43,12 +45,16 @@ extension Request {
         guard let flightNumber = Int(array["flightNumber"].stringValue) else {
             return nil
         }
-        guard let unixNumber = Double(array["date"].stringValue) else {
+        guard let unixFrom = Double(array["dateFrom"].stringValue) else {
             return nil
         }
-        let date = Date(timeIntervalSince1970: unixNumber)
+        guard let unixTo = Double(array["dateTo"].stringValue) else {
+            return nil
+        }
+        let dateFrom = Date(timeIntervalSince1970: unixFrom)
+        let dateTo = Date(timeIntervalSince1970: unixTo)
         
-        let request = Request(id: id, from: fromLocation, to: toLocation, date: date, flightNumber: flightNumber)
+        let request = Request(id: id, from: fromLocation, to: toLocation, dateFrom: dateFrom, dateTo: dateTo, flightNumber: flightNumber)
         
         return request
     }

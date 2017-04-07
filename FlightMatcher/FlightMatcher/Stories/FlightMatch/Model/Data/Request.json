@@ -11,7 +11,8 @@
             "city": "Nanjing"
 		},
 		"flightNumber": "23323",
-		"date": "30323354542"
+		"dateFrom": "30323354542",
+        "dateTo": "30323355000"
   },
   {
 		"from": {
@@ -25,7 +26,8 @@
             "city": "Nihon'odori"
 		},
 		"flightNumber": "23324",
-		"date": "323544542"
+		"dateFrom": "323544542",
+        "dateTo": "323545000"
   },
   {
 		"from": {
@@ -39,7 +41,8 @@
             "city": "Fuzhou"
 		},
 		"flightNumber": "23325",
-		"date": "3232545542"
+		"dateFrom": "3232545542",
+        "dateTo":  "3232550000"
   },
   {
 		"from": {
@@ -53,6 +56,7 @@
             "city": "Saitama"
 		},
 		"flightNumber": "23326",
-		"date": "323254242"
+		"dateFrom": "323254242",
+        "dateTo": "323255000"
   }
 ]

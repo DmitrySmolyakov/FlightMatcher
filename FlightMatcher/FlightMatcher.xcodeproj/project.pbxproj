@@ -23,6 +23,7 @@
 		53673E88BD793FE0B5E306E2 /* Pods_FlightMatcherUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E07D8C3A11C41B3DD85EB80 /* Pods_FlightMatcherUITests.framework */; };
 		A1AC8C271E950F9800ADA096 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AC8C261E950F9800ADA096 /* Constants.swift */; };
 		A1AC8C291E9515CB00ADA096 /* Cities.json in Resources */ = {isa = PBXBuildFile; fileRef = A1AC8C281E9515CB00ADA096 /* Cities.json */; };
+		A1DBDEA81E96D54800858814 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBDEA71E96D54800858814 /* Filter.swift */; };
 		A1FC22D01E93D67A00463899 /* FilterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC22CF1E93D67A00463899 /* FilterController.swift */; };
 		A1FC22D31E93D74000463899 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FC22D21E93D74000463899 /* FilterView.swift */; };
 		B43A9C7617A788AD5368FE02 /* Pods_FlightMatcherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4A3395C2BF52570D519CF27 /* Pods_FlightMatcherTests.framework */; };
@@ -53,7 +54,7 @@
 		181BF22D1E8E5D680012C09C /* FlightMatcherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlightMatcherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		181BF2311E8E5D680012C09C /* FlightMatcherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightMatcherUITests.swift; sourceTree = "<group>"; };
 		181BF2331E8E5D680012C09C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2A76B12F1E93A71F003C67C2 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Base/Extensions.swift; sourceTree = "<group>"; };
+		2A76B12F1E93A71F003C67C2 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		2A7AB55F1E929E9E00007D1D /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A7AB5621E929E9E00007D1D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A7AB5641E929E9E00007D1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -70,8 +71,9 @@
 		642BD41397FB20210884E351 /* Pods-FlightMatcher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightMatcher.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlightMatcher/Pods-FlightMatcher.debug.xcconfig"; sourceTree = "<group>"; };
 		6825663D59011820EFE92071 /* Pods-FlightMatcherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightMatcherTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FlightMatcherTests/Pods-FlightMatcherTests.release.xcconfig"; sourceTree = "<group>"; };
 		864A89F7312808FF42D1063A /* Pods-FlightMatcherUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightMatcherUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlightMatcherUITests/Pods-FlightMatcherUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		A1AC8C261E950F9800ADA096 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A1AC8C261E950F9800ADA096 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../Constants.swift; sourceTree = "<group>"; };
 		A1AC8C281E9515CB00ADA096 /* Cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cities.json; sourceTree = "<group>"; };
+		A1DBDEA71E96D54800858814 /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		A1FC22CF1E93D67A00463899 /* FilterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterController.swift; path = FlightMatch/FilterController.swift; sourceTree = "<group>"; };
 		A1FC22D21E93D74000463899 /* FilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		A3D673D6967B2ABC679CB312 /* Pods-FlightMatcherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightMatcherTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlightMatcherTests/Pods-FlightMatcherTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -181,8 +183,6 @@
 				2A7AB5611E929E9E00007D1D /* Base */,
 				2A7AB5661E929E9E00007D1D /* FlightMatch */,
 				A1FC22D11E93D68400463899 /* Filter */,
-				2A76B12F1E93A71F003C67C2 /* Extensions.swift */,
-				A1AC8C261E950F9800ADA096 /* Constants.swift */,
 			);
 			path = Stories;
 			sourceTree = "<group>";
@@ -192,6 +192,8 @@
 			children = (
 				2A7AB5621E929E9E00007D1D /* Assets.xcassets */,
 				2A7AB5651E929E9E00007D1D /* Main.storyboard */,
+				2A76B12F1E93A71F003C67C2 /* Extensions.swift */,
+				A1AC8C261E950F9800ADA096 /* Constants.swift */,
 				2A7AB5631E929E9E00007D1D /* LaunchScreen.storyboard */,
 			);
 			path = Base;
@@ -250,11 +252,36 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		A1FC22D11E93D68400463899 /* Filter */ = {
+		A1DBDEA91E96D54E00858814 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A1DBDEA71E96D54800858814 /* Filter.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		A1DBDEAA1E96D55800858814 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				A1FC22D21E93D74000463899 /* FilterView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		A1DBDEAB1E96D55C00858814 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
 				A1FC22CF1E93D67A00463899 /* FilterController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		A1FC22D11E93D68400463899 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				A1DBDEA91E96D54E00858814 /* Model */,
+				A1DBDEAA1E96D55800858814 /* View */,
+				A1DBDEAB1E96D55C00858814 /* Controller */,
 			);
 			name = Filter;
 			sourceTree = "<group>";
@@ -559,6 +586,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A7AB5731E929E9E00007D1D /* AppDelegate.swift in Sources */,
+				A1DBDEA81E96D54800858814 /* Filter.swift in Sources */,
 				2A76B1301E93A71F003C67C2 /* Extensions.swift in Sources */,
 				2A7AB57C1E929E9E00007D1D /* FlightMatchCell.swift in Sources */,
 				2A7AB57B1E929E9E00007D1D /* Request.swift in Sources */,

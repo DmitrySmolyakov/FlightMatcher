@@ -15,7 +15,7 @@ class FilterController: UIViewController {
  
     override func loadView() {
         super.loadView()
-        self.view = filterView
+        view = filterView
     }
 
     override func viewDidLoad() {
@@ -38,7 +38,7 @@ class FilterController: UIViewController {
 
 extension FilterController: FilterViewDelegate {
     
-    func filterDidPressed() {
+    func filterViewDidPressedFilterButton(_ filterView: FilterView) {
         dismiss(animated: true, completion: nil)
     }
 }
@@ -61,10 +61,10 @@ extension FilterController: UITextFieldDelegate {
         switch textField {
         case filterView.cityToField:
             filterView.cityToPicker.selectRow(0, inComponent: 0, animated: true)
-            self.pickerView(filterView.cityToPicker, didSelectRow: 0, inComponent: 0)
+            pickerView(filterView.cityToPicker, didSelectRow: 0, inComponent: 0)
         case filterView.cityFromField:
             filterView.cityFromPicker.selectRow(0, inComponent: 0, animated: true)
-            self.pickerView(filterView.cityFromPicker, didSelectRow: 0, inComponent: 0)
+            pickerView(filterView.cityFromPicker, didSelectRow: 0, inComponent: 0)
         case filterView.dateFromField:
             if filterView.dateFromField.text == "Not choosen" {
                 filterView.dateFromField.text = filterView.dateFromPicker.minimumDate?.toString(withFormat: "MMM d, h:mm a")

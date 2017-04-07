@@ -12,8 +12,8 @@ extension Date {
     
     func formatUnixTime() -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.timeStyle = DateFormatter.Style.medium
-        dateFormatter.dateStyle = DateFormatter.Style.medium
+        dateFormatter.timeStyle = DateFormatter.Style.short
+        dateFormatter.dateStyle = DateFormatter.Style.short
         let localDate = dateFormatter.string(from: self)
         return localDate
     }

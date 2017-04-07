@@ -12,6 +12,13 @@ class FlightMatchesController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBAction func filter(_ sender: UIButton) {
+        
+        Filter.filter(requests: dataSource, params: ["cityTo":"Nanjing", "cityFrom":"Tingo", "flightNumber": Int("366652938")], success: { (requests) in
+            
+        }) { (error) in
+            
+        }
+        
         self.presentModally(FilterController())
     }
     
