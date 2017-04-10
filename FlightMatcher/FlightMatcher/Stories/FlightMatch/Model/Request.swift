@@ -26,6 +26,7 @@ class Request {
 }
 
 extension Request {
+
     private class func getRequest(index: String, array: JSON) -> Request? {
         let jsonFrom = array["from"]
         guard let id = Int(index) else {
@@ -39,9 +40,9 @@ extension Request {
         guard let toLocation = Location(json: jsonTo) else {
             return nil
         }
-        
+
         guard let flightNumber = String(array["flightNumber"].stringValue) else {
-            return nil
+         return nil
         }
         
         guard let unixFrom = Double(array["dateFrom"].stringValue) else {

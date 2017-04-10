@@ -61,25 +61,21 @@ extension FlightMatchesController {
             params["dateFrom"] = UnixDateConvertor.convert(unixtime:double)
         }
 
-        if filterdata?.dateTo != nil && filterdata?.dateTo != ""{
-            if let double = Double((filterdata?.dateTo!)!) {
-                params["dateTo"] = UnixDateConvertor.convert(unixtime:double)
-            }
+        if filterdata?.dateTo != nil && filterdata?.dateTo != "" {
+            let double = UnixDateConvertor.convert(string: (filterdata?.dateTo)!, format: "MMM d, h:mm a")
+            params["dateTo"] = UnixDateConvertor.convert(unixtime:double)
         }
 
-        if filterdata?.cityTo != nil &&  filterdata?.cityTo != ""{
+        if filterdata?.cityTo != nil && filterdata?.cityTo != "" {
             params["cityTo"] = filterdata?.cityTo
-
         }
 
-        if filterdata?.cityFrom != nil &&  filterdata?.cityFrom != ""{
+        if filterdata?.cityFrom != nil && filterdata?.cityFrom != "" {
             params["cityFrom"] = filterdata?.cityFrom
-
         }
 
-        if filterdata?.flightNumber != nil &&  filterdata?.flightNumber != ""{
+        if filterdata?.flightNumber != nil && filterdata?.flightNumber != "" {
             params["flightNumber"] = filterData?.flightNumber
-
         }
 
         if !params.isEmpty {
@@ -89,8 +85,7 @@ extension FlightMatchesController {
                     return
                 }
                 filteredDataSource = filtered
-            }, error: { error in
-            })
+            }, error: { error in })
         }
     }
 
@@ -120,6 +115,7 @@ extension FlightMatchesController: UITableViewDataSource, UITableViewDelegate {
 // MARK: - FilterViewDelegate
 
 extension FlightMatchesController: FilterControllerDelegate {
+    
     func filterController(_ filterController: FilterController, returnFilterData: FilterData?) {
         self.filterData = returnFilterData
     }
