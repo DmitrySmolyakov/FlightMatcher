@@ -54,33 +54,45 @@ extension FlightMatchesController {
 
     func filter(filterdata: FilterData?) {
 
-        var params = ["cityTo": filterdata?.cityFrom ?? "",
-                      "cityFrom": filterdata?.cityFrom ?? "",
-                      "dateFrom": filterdata?.dateFrom ?? "",
-                      "dateTo": filterdata?.dateTo ?? "",
-                      "flightNumber": filterdata?.flightNumber ?? ""] as [String: Any]
+        var params = [String: Any]()
 
-                if filterdata?.dateFrom != nil {
-                    if let double = Double((filterdata?.dateFrom!)!) {
-                        params["dateFrom"] = UnixDateConvertor.convert(unixtime:double)
-                    }
-                }
-        
-                if filterdata?.dateTo != nil {
-                    if let double = Double((filterdata?.dateTo!)!) {
-                        params["dateTo"] = UnixDateConvertor.convert(unixtime:double)
-                    }
-                }
-
-
-        Filter.filter(requests: dataSource, params: params, success: { filtered in
-            guard filtered?.count != 0 else {
-                filteredDataSource = dataSource
-                return
+        if filterdata?.dateFrom != nil &&  filterdata?.dateFrom != "" {
+            if let double = Double((filterdata?.dateFrom!)!) {
+                params["dateFrom"] = UnixDateConvertor.convert(unixtime:double)
             }
-            filteredDataSource = filtered
-        }, error: { error in
-        })
+        }
+
+        if filterdata?.dateTo != nil &&  filterdata?.dateTo != ""{
+            if let double = Double((filterdata?.dateTo!)!) {
+                params["dateTo"] = UnixDateConvertor.convert(unixtime:double)
+            }
+        }
+
+        if filterdata?.cityTo != nil &&  filterdata?.cityTo != ""{
+            params["cityTo"] = filterdata?.cityTo
+
+        }
+
+        if filterdata?.cityFrom != nil &&  filterdata?.cityFrom != ""{
+            params["cityFrom"] = filterdata?.cityFrom
+
+        }
+
+        if filterdata?.flightNumber != nil &&  filterdata?.flightNumber != ""{
+            params["flightNumber"] = filterData?.flightNumber
+
+        }
+
+        if !params.isEmpty {
+            Filter.filter(requests: dataSource, params: params, success: { filtered in
+                guard filtered?.count != 0 else {
+                    filteredDataSource = dataSource
+                    return
+                }
+                filteredDataSource = filtered
+            }, error: { error in
+            })
+        }
     }
 
     func setupController() {

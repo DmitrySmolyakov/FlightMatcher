@@ -21,7 +21,3 @@ struct Time {
      static let day = 86400
      static let hour = 3600
 }
-
-struct EmptyView {
-    static let notChoosen = "Not choosen"
-}

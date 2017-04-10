@@ -92,7 +92,7 @@ class FilterView: UIView {
         contentView.addSubview(flightNumberField)
         
         flightNumberLabel.text = "Flight number"
-        flightNumberField.text = "Not choosen"
+        flightNumberField.placeholder = "Number"
         
         flightNumberLabel.snp.makeConstraints({ (make) in
             make.centerX.equalToSuperview()
@@ -117,15 +117,13 @@ class FilterView: UIView {
         let fields = [dateToField, dateFromField]
         for field in fields {
             field.textAlignment = .center
+            field.placeholder = "Date"
             field.isUserInteractionEnabled = true
             contentView.addSubview(field)
         }
         
         dateFromLabel.text = "From date"
         dateToLabel.text = "To date"
-        
-        dateFromField.text = "Not choosen"
-        dateToField.text = "Not choosen"
         
         dateFromLabel.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview().offset(30)
@@ -165,6 +163,7 @@ class FilterView: UIView {
         let fields = [cityToField, cityFromField]
         for field in fields {
             field.textAlignment = .center
+            field.placeholder = "City"
             field.isUserInteractionEnabled = true
             field.allowsEditingTextAttributes = false
             contentView.addSubview(field)
@@ -172,9 +171,6 @@ class FilterView: UIView {
         
         cityFromLabel.text = "From city"
         cityToLabel.text = "To city"
-        
-        cityFromField.text = "Not choosen"
-        cityToField.text = "Not choosen"
 
         cityFromLabel.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview().offset(30)
