@@ -24,7 +24,6 @@ class Location {
         guard let city = json["city"].string else { return nil}
         guard let country = json["country"].string else { return nil}
         guard let id = json["id"].int else { return nil}
-    
         self.init(id: id, city: city, country: country)
     }
 }

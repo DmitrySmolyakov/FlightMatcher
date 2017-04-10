@@ -8,29 +8,6 @@
 
 import UIKit
 
-extension Date {
-    
-    func formatUnixTime() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeStyle = DateFormatter.Style.short
-        dateFormatter.dateStyle = DateFormatter.Style.short
-        let localDate = dateFormatter.string(from: self)
-        return localDate
-    }
-    
-    func toString(withFormat format: String) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = format
-        return dateFormatter.string(from: self)
-    }
-    
-    static func from(string: String, withFormat format: String) -> Date? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = format
-        return dateFormatter.date(from: string)
-    }
-}
-
 // MARK: - Presentation
 
 extension UIViewController {
@@ -53,11 +30,11 @@ extension UIViewController {
 extension UIViewController {
     
     func pushViewController(_ controller: UIViewController) {
-        self.navigationController?.pushViewController(controller, animated: true)
+        navigationController?.pushViewController(controller, animated: true)
     }
     
     func presentModally(_ controller: UIViewController) {
-        self.present(controller, animated: true, completion: nil)
+        present(controller, animated: true, completion: nil)
     }
     
     func back() {
@@ -71,18 +48,50 @@ extension UIViewController {
     
     public func alertController(_ message: String) -> UIAlertController {
         let controller = UIAlertController(title: message, message: nil, preferredStyle: .alert)
-        controller.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-            controller.dismiss(animated: true, completion: nil) }))
+        
+        let action = UIAlertAction(title: "OK", style: .default, handler: { action in
+            controller.dismiss(animated: true, completion: nil)
+        })
+        controller.addAction(action)
         return controller
     }
     
-    public func showAlert(_ message: String, title:String, cancelButtonTitle: String, acceptButtonTitle: String, completionBlock: @escaping () -> Void) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: cancelButtonTitle, style: .cancel, handler: { action in
-            self.dismiss(animated: true, completion: nil) }))
-        alert.addAction(UIAlertAction(title: acceptButtonTitle, style: .default, handler: { action in
-            completionBlock() }))
+    public func showAlert(_ message: String, title:String, cancelButtonTitle: String,
+                          acceptButtonTitle: String, completionBlock: @escaping () -> Void) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .cancel, handler: { action in
+            self.dismiss(animated: true, completion: nil)
+        })
+        let acceptAction = UIAlertAction(title: acceptButtonTitle, style: .default, handler: { action in
+            completionBlock()
+        })
+        alert.addAction(cancelAction)
+        alert.addAction(acceptAction)
         present(alert, animated: true, completion: nil)
+    }
+}
+
+extension Date {
+    
+    func formatUnixTime() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = DateFormatter.Style.short
+        dateFormatter.dateStyle = DateFormatter.Style.short
+        let localDate = dateFormatter.string(from: self)
+        return localDate
+    }
+    
+    func toString(withFormat format: String) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter.string(from: self)
+    }
+    
+    static func from(string: String, withFormat format: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter.date(from: string)
     }
 }
 

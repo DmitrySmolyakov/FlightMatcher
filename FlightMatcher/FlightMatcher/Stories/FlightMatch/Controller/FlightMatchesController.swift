@@ -8,23 +8,23 @@
 
 import UIKit
 
-class FlightMatchesController: UIViewController {
+protocol FlightMatchDelegate: class {
+    func flighMatchesController(_ flighMatchesController: FlightMatchesController, passRequests: [Request]?)
+}
 
+class FlightMatchesController: UIViewController {
+    
+    weak var delegate: FlightMatchDelegate?
+    
     @IBOutlet weak var tableView: UITableView!
     @IBAction func filter(_ sender: UIButton) {
-        
-        Filter.filter(requests: dataSource, params: ["cityTo":"Nanjing", "cityFrom":"Tingo", "flightNumber": Int("366652938")], success: { (requests) in
-            
-        }) { (error) in
-            
-        }
-        
-        self.presentModally(FilterController())
+      self.presentModally(FilterController())
     }
     
-    var dataSource: [Request]? {
+    public var dataSource: [Request]? {
         didSet {
             tableView.reloadData()
+            self.delegate?.flighMatchesController(self, passRequests: dataSource)
         }
     }
 

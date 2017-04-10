@@ -8,9 +8,29 @@
 
 import UIKit
 
+struct FilterData {
+    let cityTo: String?
+    let cityFrom: String?
+    let dateFrom: String?
+    let dateTo: String?
+    let flightNumber: String?
+    
+    init(cityTo: String?, cityFrom: String?, dateFrom: String?, dateTo: String?, flightNumber: String?) {
+        self.cityTo = cityTo
+        self.cityFrom = cityFrom
+        self.dateFrom = dateFrom
+        self.dateTo = dateTo
+        self.flightNumber = flightNumber
+    }
+}
+
 class Filter {
     
-    public class func filter(requests: [Request]?, params: Dictionary<String, Any>, success: @escaping ([Request]?) -> Void, failure: @escaping (String) -> Void) {
+    typealias SuccessHandler = ([Request]?) -> Void
+    typealias ErrorHandler = (String) -> Void
+    
+    public class func filter(requests: [Request]?, params: Dictionary<String, Any>,
+                             success: SuccessHandler, error: ErrorHandler) {
         
         var sortedItems: [Request]?
         
@@ -18,26 +38,14 @@ class Filter {
             switch key {
             case "cityTo":
                 sortedItems = requests?.filter({ $0.to.city == (value as! String) })
-                print(sortedItems?.count ?? 0)
             case "cityFrom":
                 sortedItems = requests?.filter({ $0.from.city == (value as! String) })
-                print(sortedItems?.count ?? 0)
-//            case "dateTo":
-//                sortedItems = requests?.filter({$0.dateTo >= (value as! Date) })
-//                print(sortedItems?.count ?? 0)
-//                fallthrough
-//            case "dateFrom":
-//                sortedItems = requests?.filter({$0.dateFrom <= (value as! Date) })
-//                print(sortedItems?.count ?? 0)
-//                fallthrough
             case "flightNumber":
-                sortedItems = requests?.filter({ $0.flightNumber == (value as! Int) })
-                print(sortedItems?.count ?? 0)
-            default:
-                print("daefault")
-                break
+                sortedItems = requests?.filter({ $0.flightNumber == (value as! String) })
+            default: break
             }
         }
+       success(sortedItems)
     }
-
 }
+

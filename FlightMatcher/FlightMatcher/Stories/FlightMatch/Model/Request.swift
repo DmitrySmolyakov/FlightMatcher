@@ -11,13 +11,11 @@ import SwiftyJSON
 
 class Request {
     let id: Int
-    let from: Location
-    let to: Location
-    let dateFrom: Date
-    let dateTo: Date
-    let flightNumber: Int
+    let from: Location, to: Location
+    let dateFrom: Date, dateTo: Date
+    let flightNumber: String
     
-    init(id: Int, from: Location, to: Location, dateFrom: Date, dateTo: Date, flightNumber: Int) {
+    init(id: Int, from: Location, to: Location, dateFrom: Date, dateTo: Date, flightNumber: String) {
         self.id = id
         self.from = from
         self.to = to
@@ -42,9 +40,10 @@ extension Request {
             return nil
         }
         
-        guard let flightNumber = Int(array["flightNumber"].stringValue) else {
+        guard let flightNumber = String(array["flightNumber"].stringValue) else {
             return nil
         }
+        
         guard let unixFrom = Double(array["dateFrom"].stringValue) else {
             return nil
         }
