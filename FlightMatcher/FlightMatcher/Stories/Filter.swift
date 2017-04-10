@@ -14,14 +14,6 @@ struct FilterData {
     let dateFrom: String?
     let dateTo: String?
     let flightNumber: String?
-    
-    init(cityTo: String?, cityFrom: String?, dateFrom: String?, dateTo: String?, flightNumber: String?) {
-        self.cityTo = cityTo
-        self.cityFrom = cityFrom
-        self.dateFrom = dateFrom
-        self.dateTo = dateTo
-        self.flightNumber = flightNumber
-    }
 }
 
 class Filter {
@@ -42,6 +34,10 @@ class Filter {
                 sortedItems = requests?.filter({ $0.from.city == (value as! String) })
             case "flightNumber":
                 sortedItems = requests?.filter({ $0.flightNumber == (value as! String) })
+            case "dateFrom":
+                sortedItems = requests?.filter({ $0.dateFrom >= (value as! Date) })
+            case "dateTo":
+                sortedItems = requests?.filter({ $0.dateTo >= (value as! Date) })
             default: break
             }
         }

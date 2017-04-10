@@ -8,12 +8,23 @@
 
 import UIKit
 
+protocol FilterControllerDelegate: class {
+    func filterController(_ filterController: FilterController, returnFilterData: FilterData?)
+}
+
 class FilterController: UIViewController {
-    
+
+    convenience init(_ filterData: FilterData?) {
+        self.init()
+        if filterData != nil {
+            self.filterData = filterData
+        }
+    }
+
     var cities: [String]?
-    var dataSource: [Request]?
     var filterData: FilterData?
     let filterView = FilterView()
+    weak var delegate: FilterControllerDelegate?
  
     override func loadView() {
         super.loadView()
@@ -30,20 +41,23 @@ class FilterController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-       Location.getCities { (parsedCities) in
+       Location.getCities { parsedCities in
             self.cities = parsedCities
         }
     }
-    
+}
+
+// MARK: - Setups
+
+extension FilterController {
+
     func setupController() {
         setupPicker()
         setupFields()
         filterView.delegate = self
-        FlightMatchesController().delegate = self
     }
-    
+
     func preloadDataIfPossible() {
-        
         if filterData != nil {
             filterView.cityFromField.text = filterData?.cityFrom
             filterView.cityToField.text = filterData?.cityTo
@@ -54,13 +68,7 @@ class FilterController: UIViewController {
     }
 }
 
-extension FilterController: FlightMatchDelegate {
-    
-    func flighMatchesController(_ flighMatchesController: FlightMatchesController, passRequests: [Request]?) {
-        dataSource = [Request]()
-        dataSource = passRequests
-    }
-}
+// MARK: - FilterViewDelegate
 
 extension FilterController: FilterViewDelegate {
     
@@ -71,19 +79,13 @@ extension FilterController: FilterViewDelegate {
                                    dateFrom: filterView.dateFromField.text,
                                      dateTo: filterView.dateToField.text,
                                flightNumber: filterView.flightNumberField.text)
-        
-        let params = ["cityTo": filterData?.cityFrom ?? "",
-                      "flightNumber": filterData?.flightNumber ?? "",
-                      "dateFrom": UnixDateConvertor.convert(unixtime: 234555555)] as [String : Any]
-        
-        Filter.filter(requests: dataSource, params: params, success: { filtered in
-            print("Filtered - \(filtered?.count ?? 0)")
-        }, error: { error in
-            print("Error")
-        })
-        dismiss(animated: true, completion: nil)
+       
+       self.delegate?.filterController(self, returnFilterData: filterData!)
+       dismiss(animated: true, completion: nil)
     }
 }
+
+// MARK: - UITextFieldDelegate
 
 extension FilterController: UITextFieldDelegate {
     
@@ -119,6 +121,8 @@ extension FilterController: UITextFieldDelegate {
         }
     }
 }
+
+// MARK: - UIPickerViewDelegate, UIPickerViewDataSource
 
 extension FilterController: UIPickerViewDelegate, UIPickerViewDataSource {
     

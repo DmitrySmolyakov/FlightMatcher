@@ -16,8 +16,12 @@ struct Size {
 }
 
 struct Time {
-    public static let month = TimeInterval(exactly: 60*60*24*30)
-    public static let week = TimeInterval(exactly: 60*60*24*7)
-    public static let day = TimeInterval(exactly: 60*60*24)
-    public static let hour = TimeInterval(exactly: 60*60)
+     static let month = 2592000
+     static let week = 604800
+     static let day = 86400
+     static let hour = 3600
+}
+
+struct EmptyView {
+    static let notChoosen = "Not choosen"
 }

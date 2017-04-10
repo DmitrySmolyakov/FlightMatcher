@@ -74,9 +74,9 @@
 		864A89F7312808FF42D1063A /* Pods-FlightMatcherUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightMatcherUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlightMatcherUITests/Pods-FlightMatcherUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A1AC8C261E950F9800ADA096 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../Constants.swift; sourceTree = "<group>"; };
 		A1AC8C281E9515CB00ADA096 /* Cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cities.json; sourceTree = "<group>"; };
-		A1DBDEA71E96D54800858814 /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		A1DBDEA71E96D54800858814 /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Filter.swift; path = ../../Filter.swift; sourceTree = "<group>"; };
 		A1DBDEAC1E97CFA700858814 /* DateUnixConvertion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateUnixConvertion.swift; sourceTree = "<group>"; };
-		A1FC22CF1E93D67A00463899 /* FilterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterController.swift; path = FlightMatch/FilterController.swift; sourceTree = "<group>"; };
+		A1FC22CF1E93D67A00463899 /* FilterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FilterController.swift; path = ../FilterController.swift; sourceTree = "<group>"; };
 		A1FC22D21E93D74000463899 /* FilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		A3D673D6967B2ABC679CB312 /* Pods-FlightMatcherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlightMatcherTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FlightMatcherTests/Pods-FlightMatcherTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E4A3395C2BF52570D519CF27 /* Pods_FlightMatcherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlightMatcherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -184,7 +184,6 @@
 			children = (
 				2A7AB5611E929E9E00007D1D /* Base */,
 				2A7AB5661E929E9E00007D1D /* FlightMatch */,
-				A1FC22D11E93D68400463899 /* Filter */,
 			);
 			path = Stories;
 			sourceTree = "<group>";
@@ -215,7 +214,10 @@
 		2A7AB5671E929E9E00007D1D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A1DBDEA71E96D54800858814 /* Filter.swift */,
 				2A7AB5681E929E9E00007D1D /* FlightMatchesController.swift */,
+				A1FC22CF1E93D67A00463899 /* FilterController.swift */,
+				A1FC22D11E93D68400463899 /* Filter */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -258,7 +260,6 @@
 		A1DBDEA91E96D54E00858814 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A1DBDEA71E96D54800858814 /* Filter.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -274,7 +275,6 @@
 		A1DBDEAB1E96D55C00858814 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				A1FC22CF1E93D67A00463899 /* FilterController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -287,6 +287,7 @@
 				A1DBDEAB1E96D55C00858814 /* Controller */,
 			);
 			name = Filter;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		BFF78A68D23970DF107CE6AD /* Pods */ = {

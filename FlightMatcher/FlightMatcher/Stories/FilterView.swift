@@ -70,12 +70,12 @@ class FilterView: UIView {
     private func setPickers() {
         dateFromPicker.datePickerMode = .dateAndTime
         dateFromPicker.minimumDate = Date()
-        dateFromPicker.maximumDate = Date(timeInterval: Time.month!*3, since: Date())
+        dateFromPicker.maximumDate = Date(timeInterval: Double(Time.month)*3, since: Date())
         dateFromPicker.date = dateFromPicker.minimumDate!
         
         dateToPicker.datePickerMode = .dateAndTime
-        dateToPicker.minimumDate = Date(timeInterval: Time.hour!*2, since: Date())
-        dateToPicker.maximumDate = Date(timeInterval: Time.month!*6, since: Date())
+        dateToPicker.minimumDate = Date(timeInterval: Double(Time.hour)*2, since: Date())
+        dateToPicker.maximumDate = Date(timeInterval: Double(Time.month)*6, since: Date())
         dateToPicker.date = dateToPicker.minimumDate!
         
         dateToPicker.addTarget(self, action: #selector(handleDateToPicker(sender:)), for: .valueChanged)

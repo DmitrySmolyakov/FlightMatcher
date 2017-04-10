@@ -8,30 +8,42 @@
 
 import UIKit
 
-protocol FlightMatchDelegate: class {
-    func flighMatchesController(_ flighMatchesController: FlightMatchesController, passRequests: [Request]?)
-}
-
 class FlightMatchesController: UIViewController {
-    
-    weak var delegate: FlightMatchDelegate?
+
+    var filterData: FilterData?
     
     @IBOutlet weak var tableView: UITableView!
     @IBAction func filter(_ sender: UIButton) {
-      self.presentModally(FilterController())
+        let vc = FilterController(filterData)
+        vc.delegate = self
+        self.presentModally(vc)
     }
     
     public var dataSource: [Request]? {
         didSet {
             tableView.reloadData()
-            self.delegate?.flighMatchesController(self, passRequests: dataSource)
         }
+    }
+
+    public var filteredDataSource: [Request]? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        filter(filterdata: self.filterData)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataSource = getRequests()
+        setupController()
     }
+}
+
+// MARK: - Setups
+
+extension FlightMatchesController {
 
     func getRequests() -> [Request]? {
         if let url = Bundle.main.url(forResource: "Request", withExtension: "json") {
@@ -39,21 +51,65 @@ class FlightMatchesController: UIViewController {
         }
         return nil
     }
+
+    func filter(filterdata: FilterData?) {
+
+        var params = ["cityTo": filterdata?.cityFrom ?? "",
+                      "cityFrom": filterdata?.cityFrom ?? "",
+                      "dateFrom": filterdata?.dateFrom ?? "",
+                      "dateTo": filterdata?.dateTo ?? "",
+                      "flightNumber": filterdata?.flightNumber ?? ""] as [String: Any]
+
+                if filterdata?.dateFrom != nil {
+                    if let double = Double((filterdata?.dateFrom!)!) {
+                        params["dateFrom"] = UnixDateConvertor.convert(unixtime:double)
+                    }
+                }
+        
+                if filterdata?.dateTo != nil {
+                    if let double = Double((filterdata?.dateTo!)!) {
+                        params["dateTo"] = UnixDateConvertor.convert(unixtime:double)
+                    }
+                }
+
+
+        Filter.filter(requests: dataSource, params: params, success: { filtered in
+            guard filtered?.count != 0 else {
+                filteredDataSource = dataSource
+                return
+            }
+            filteredDataSource = filtered
+        }, error: { error in
+        })
+    }
+
+    func setupController() {
+        dataSource = getRequests()
+        filteredDataSource = dataSource
+        filterData = FilterData(cityTo: nil, cityFrom: nil, dateFrom: nil, dateTo: nil, flightNumber: nil)
+    }
 }
+
+// MARK: - UITableViewDataSource, UITableViewDelegate
 
 extension FlightMatchesController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataSource?.count ?? 0
+        return filteredDataSource?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FlightMatchCell.reuseIdentifier(), for: indexPath) as! FlightMatchCell
-        let request = dataSource?[indexPath.row]
+        let request = filteredDataSource?[indexPath.row]
         cell.configure(item: request!)
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+}
+
+// MARK: - FilterViewDelegate
+
+extension FlightMatchesController: FilterControllerDelegate {
+    func filterController(_ filterController: FilterController, returnFilterData: FilterData?) {
+        self.filterData = returnFilterData
     }
 }
