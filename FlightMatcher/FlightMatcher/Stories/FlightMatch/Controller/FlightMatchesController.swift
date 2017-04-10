@@ -56,13 +56,12 @@ extension FlightMatchesController {
 
         var params = [String: Any]()
 
-        if filterdata?.dateFrom != nil &&  filterdata?.dateFrom != "" {
-            if let double = Double((filterdata?.dateFrom!)!) {
-                params["dateFrom"] = UnixDateConvertor.convert(unixtime:double)
-            }
+        if filterdata?.dateFrom != nil && filterdata?.dateFrom != "" {
+            let double = UnixDateConvertor.convert(string: (filterdata?.dateFrom)!, format: "MMM d, h:mm a")
+            params["dateFrom"] = UnixDateConvertor.convert(unixtime:double)
         }
 
-        if filterdata?.dateTo != nil &&  filterdata?.dateTo != ""{
+        if filterdata?.dateTo != nil && filterdata?.dateTo != ""{
             if let double = Double((filterdata?.dateTo!)!) {
                 params["dateTo"] = UnixDateConvertor.convert(unixtime:double)
             }

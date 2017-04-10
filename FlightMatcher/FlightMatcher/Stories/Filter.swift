@@ -35,7 +35,10 @@ class Filter {
                 sortedItems = sortedItems?.filter({ $0.from.city == (value as! String) })
             case "flightNumber":
                 sortedItems = sortedItems?.filter({ $0.flightNumber == (value as! String) })
-
+            case "dateFrom":
+                sortedItems = sortedItems?.filter({ $0.dateFrom >= (value as! Date) })
+            case "dateTo":
+                sortedItems = sortedItems?.filter({ $0.dateTo <= (value as! Date) })
             default: break
             }
         }
