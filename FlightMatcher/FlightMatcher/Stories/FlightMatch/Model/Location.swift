@@ -21,7 +21,9 @@ class Location {
     }
 
     convenience init?(json: JSON) {
-        guard let city = json["city"].string else { return nil}
+        guard let city = json["city"].string else {
+            return nil
+        }
         guard let country = json["country"].string else { return nil}
         guard let id = json["id"].int else { return nil}
         self.init(id: id, city: city, country: country)
@@ -29,7 +31,6 @@ class Location {
 }
 
 extension Location {
-
     public class func parse(file: String, success:@escaping ([Location]?) -> Void, failure:@escaping (String) -> Void) {
         guard let file = Bundle.main.url(forResource: file, withExtension: "json") else {
             failure("Error in path")
