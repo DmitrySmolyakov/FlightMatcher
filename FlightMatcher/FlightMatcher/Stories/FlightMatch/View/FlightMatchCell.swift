@@ -10,15 +10,15 @@ import UIKit
 import SnapKit
 
 class FlightMatchCell: UITableViewCell {
-    
+
     @IBOutlet weak var fromToLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var flightLabel: UILabel!
-    
+
     class func reuseIdentifier() -> String {
         return String(describing: FlightMatchCell.self)
     }
-    
+
     func configure(item: Request) {
         fromToLabel.text = "\(item.from.country) \(item.from.city) - \(item.to.country) \(item.to.city)"
         dateLabel.text = "\(item.dateFrom.formatUnixTime()) - \(item.dateTo.formatUnixTime()) "

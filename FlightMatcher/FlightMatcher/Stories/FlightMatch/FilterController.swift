@@ -25,7 +25,7 @@ class FilterController: UIViewController {
     var filterData: FilterData?
     let filterView = FilterView()
     weak var delegate: FilterControllerDelegate?
- 
+
     override func loadView() {
         super.loadView()
         view = filterView
@@ -35,11 +35,11 @@ class FilterController: UIViewController {
         super.viewDidLoad()
         setupController()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         preloadDataIfPossible()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
        Location.getCities { parsedCities in
             self.cities = parsedCities
@@ -71,15 +71,14 @@ extension FilterController {
 // MARK: - FilterViewDelegate
 
 extension FilterController: FilterViewDelegate {
-    
+
     func filterViewDidPressedFilterButton(_ filterView: FilterView) {
-        
         filterData = FilterData.init(cityTo: filterView.cityToField.text,
                                    cityFrom: filterView.cityFromField.text,
                                    dateFrom: filterView.dateFromField.text,
                                      dateTo: filterView.dateToField.text,
                                flightNumber: filterView.flightNumberField.text)
-       
+
        self.delegate?.filterController(self, returnFilterData: filterData!)
        dismiss(animated: true, completion: nil)
     }
@@ -88,18 +87,19 @@ extension FilterController: FilterViewDelegate {
 // MARK: - UITextFieldDelegate
 
 extension FilterController: UITextFieldDelegate {
-    
+
     func setupFields() {
         filterView.cityFromField.delegate = self
         filterView.cityToField.delegate = self
         filterView.dateFromField.delegate = self
         filterView.dateToField.delegate = self
     }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
         return false
     }
-    
+
     func textFieldDidBeginEditing(_ textField: UITextField) {
         switch textField {
         case filterView.cityToField:
@@ -109,12 +109,14 @@ extension FilterController: UITextFieldDelegate {
             filterView.cityFromPicker.selectRow(0, inComponent: 0, animated: true)
             pickerView(filterView.cityFromPicker, didSelectRow: 0, inComponent: 0)
         case filterView.dateFromField:
-            if filterView.dateFromField.text == "" {
-                filterView.dateFromField.text = filterView.dateFromPicker.minimumDate?.toString(withFormat: "MMM d, h:mm a")
+            if filterView.dateFromField.text?.isEmpty {
+                let minimumDate = filterView.dateFromPicker.minimumDate?
+                filterView.dateFromField.text = minimumDate.toString(withFormat: "MMM d, h:mm a")
             }
         case filterView.dateToField:
-            if filterView.dateToField.text == "" {
-                filterView.dateToField.text = filterView.dateToPicker.minimumDate?.toString(withFormat: "MMM d, h:mm a")
+            if filterView.dateToField.text.isEmpty {
+                let minimumDate = filterView.dateToPicker.minimumDate?
+                filterView.dateToField.text = minimumDate.toString(withFormat: "MMM d, h:mm a")
             }
         default:
             break
@@ -125,11 +127,11 @@ extension FilterController: UITextFieldDelegate {
 // MARK: - UIPickerViewDelegate, UIPickerViewDataSource
 
 extension FilterController: UIPickerViewDelegate, UIPickerViewDataSource {
-    
+
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return cities?.count ?? 0
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return cities?[row]
     }
@@ -137,7 +139,7 @@ extension FilterController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch pickerView {
         case filterView.cityFromPicker:
@@ -148,13 +150,12 @@ extension FilterController: UIPickerViewDelegate, UIPickerViewDataSource {
             break
         }
     }
-    
+
     func setupPicker() {
         filterView.cityToPicker.delegate = self
         filterView.cityToPicker.dataSource = self
-        
+
         filterView.cityFromPicker.delegate = self
         filterView.cityFromPicker.dataSource = self
     }
 }
-

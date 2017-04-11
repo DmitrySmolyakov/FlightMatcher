@@ -28,14 +28,15 @@ class Request {
 extension Request {
 
     private class func getRequest(index: String, array: JSON) -> Request? {
-        let jsonFrom = array["from"]
         guard let id = Int(index) else {
             return nil
         }
+
+        let jsonFrom = array["from"]
         guard let fromLocation = Location(json: jsonFrom) else {
             return nil
         }
-        
+
         let jsonTo = array["to"]
         guard let toLocation = Location(json: jsonTo) else {
             return nil
@@ -44,18 +45,19 @@ extension Request {
         guard let flightNumber = String(array["flightNumber"].stringValue) else {
          return nil
         }
-        
+
         guard let unixFrom = Double(array["dateFrom"].stringValue) else {
             return nil
         }
+        let dateFrom = Date(timeIntervalSince1970: unixFrom)
+
         guard let unixTo = Double(array["dateTo"].stringValue) else {
             return nil
         }
-        let dateFrom = Date(timeIntervalSince1970: unixFrom)
         let dateTo = Date(timeIntervalSince1970: unixTo)
-        
-        let request = Request(id: id, from: fromLocation, to: toLocation, dateFrom: dateFrom, dateTo: dateTo, flightNumber: flightNumber)
-        
+
+        let request = Request(id: id, from: fromLocation, to: toLocation,
+                              dateFrom: dateFrom, dateTo: dateTo, flightNumber: flightNumber)
         return request
     }
     
@@ -63,7 +65,7 @@ extension Request {
         do {
             let data = try Data(contentsOf: url)
             let json = JSON(data: data)
-            
+
             var requests: [Request]? = [Request]()
             
             for (index, array):(String, JSON) in json {
@@ -75,5 +77,4 @@ extension Request {
         }
         return nil
     }
-    
 }

@@ -11,14 +11,14 @@ import UIKit
 class FlightMatchesController: UIViewController {
 
     var filterData: FilterData?
-    
+
     @IBOutlet weak var tableView: UITableView!
     @IBAction func filter(_ sender: UIButton) {
         let vc = FilterController(filterData)
         vc.delegate = self
         self.presentModally(vc)
     }
-    
+
     public var dataSource: [Request]? {
         didSet {
             tableView.reloadData()
@@ -80,12 +80,12 @@ extension FlightMatchesController {
 
         if !params.isEmpty {
             Filter.filter(requests: dataSource, params: params, success: { filtered in
-                guard filtered?.count != 0 else {
+                guard filtered?.isEmpty else {
                     filteredDataSource = dataSource
                     return
                 }
                 filteredDataSource = filtered
-            }, error: { error in })
+            }, error: { _ in })
         }
     }
 
@@ -105,7 +105,10 @@ extension FlightMatchesController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: FlightMatchCell.reuseIdentifier(), for: indexPath) as! FlightMatchCell
+        if let flightMatchCell = ce
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: FlightMatchCell.reuseIdentifier(),
+                                                 for: indexPath) as! FlightMatchCell
         let request = filteredDataSource?[indexPath.row]
         cell.configure(item: request!)
         return cell
@@ -115,7 +118,7 @@ extension FlightMatchesController: UITableViewDataSource, UITableViewDelegate {
 // MARK: - FilterViewDelegate
 
 extension FlightMatchesController: FilterControllerDelegate {
-    
+
     func filterController(_ filterController: FilterController, returnFilterData: FilterData?) {
         self.filterData = returnFilterData
     }

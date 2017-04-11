@@ -19,7 +19,7 @@ class Location {
         self.city = city
         self.country = country
     }
-    
+
     convenience init?(json: JSON) {
         guard let city = json["city"].string else { return nil}
         guard let country = json["country"].string else { return nil}
@@ -29,7 +29,7 @@ class Location {
 }
 
 extension Location {
-    
+
     public class func parse(file: String, success:@escaping ([Location]?) -> Void, failure:@escaping (String) -> Void) {
         guard let file = Bundle.main.url(forResource: file, withExtension: "json") else {
             failure("Error in path")
@@ -41,7 +41,7 @@ extension Location {
             
             var locations: [Location]? = [Location]()
             var cityId = 0
-            
+
             for (country, cities):(String, JSON) in json {
                 for (_, city):(String, JSON) in cities {
                     guard let city = city.string else {

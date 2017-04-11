@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		2A6381B91E9CF2DE00F47FFD /* SwiftLint */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 2A6381BC1E9CF2DF00F47FFD /* Build configuration list for PBXAggregateTarget "SwiftLint" */;
+			buildPhases = (
+				2A8563961E9CF35B005388BB /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = SwiftLint;
+			productName = "Ыцшаедште";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		181BF2271E8E5D680012C09C /* FlightMatcherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181BF2261E8E5D680012C09C /* FlightMatcherTests.swift */; };
 		181BF2321E8E5D680012C09C /* FlightMatcherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181BF2311E8E5D680012C09C /* FlightMatcherUITests.swift */; };
@@ -395,6 +409,10 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 181BF20D1E8E5D680012C09C;
 					};
+					2A6381B91E9CF2DE00F47FFD = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 181BF2091E8E5D680012C09C /* Build configuration list for PBXProject "FlightMatcher" */;
@@ -413,6 +431,7 @@
 				181BF20D1E8E5D680012C09C /* FlightMatcher */,
 				181BF2211E8E5D680012C09C /* FlightMatcherTests */,
 				181BF22C1E8E5D680012C09C /* FlightMatcherUITests */,
+				2A6381B91E9CF2DE00F47FFD /* SwiftLint */,
 			);
 		};
 /* End PBXProject section */
@@ -447,6 +466,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2A8563961E9CF35B005388BB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
 		318889D27A65EBD968F7B4A9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -833,6 +865,20 @@
 			};
 			name = Release;
 		};
+		2A6381BA1E9CF2DF00F47FFD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2A6381BB1E9CF2DF00F47FFD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -868,6 +914,15 @@
 			buildConfigurations = (
 				181BF23D1E8E5D680012C09C /* Debug */,
 				181BF23E1E8E5D680012C09C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2A6381BC1E9CF2DF00F47FFD /* Build configuration list for PBXAggregateTarget "SwiftLint" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A6381BA1E9CF2DF00F47FFD /* Debug */,
+				2A6381BB1E9CF2DF00F47FFD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
