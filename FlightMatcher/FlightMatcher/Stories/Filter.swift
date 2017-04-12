@@ -47,7 +47,9 @@ class Filter {
                 if let dateTo = value as? Date {
                     sortedItems = sortedItems?.filter({ $0.dateTo == dateTo })
                 }
-            default: break
+            default:
+                error("Error during paramater pass")
+                break
             }
         }
        success(sortedItems)

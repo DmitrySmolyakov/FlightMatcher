@@ -103,20 +103,24 @@ extension FilterController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         switch textField {
         case filterView.cityToField:
-            filterView.cityToPicker.selectRow(0, inComponent: 0, animated: true)
-            pickerView(filterView.cityToPicker, didSelectRow: 0, inComponent: 0)
+            if filterView.cityFromField.text?.isEmpty ?? true {
+                filterView.cityToPicker.selectRow(0, inComponent: 0, animated: true)
+                pickerView(filterView.cityToPicker, didSelectRow: 0, inComponent: 0)
+            }
         case filterView.cityFromField:
-            filterView.cityFromPicker.selectRow(0, inComponent: 0, animated: true)
-            pickerView(filterView.cityFromPicker, didSelectRow: 0, inComponent: 0)
+            if filterView.cityFromField.text?.isEmpty ?? true {
+                filterView.cityFromPicker.selectRow(0, inComponent: 0, animated: true)
+                pickerView(filterView.cityFromPicker, didSelectRow: 0, inComponent: 0)
+            }
         case filterView.dateFromField:
-            if filterView.dateFromField.text?.isEmpty {
-                let minimumDate = filterView.dateFromPicker.minimumDate?
-                filterView.dateFromField.text = minimumDate.toString(withFormat: "MMM d, h:mm a")
+            if filterView.dateFromField.text?.isEmpty ?? true {
+                let minimumDate = filterView.dateFromPicker.minimumDate
+                filterView.dateFromField.text = minimumDate?.toString(withFormat: "MMM d, h:mm a")
             }
         case filterView.dateToField:
-            if filterView.dateToField.text.isEmpty {
-                let minimumDate = filterView.dateToPicker.minimumDate?
-                filterView.dateToField.text = minimumDate.toString(withFormat: "MMM d, h:mm a")
+            if filterView.dateToField.text?.isEmpty ?? true {
+                let minimumDate = filterView.dateToPicker.minimumDate
+                filterView.dateToField.text = minimumDate?.toString(withFormat: "MMM d, h:mm a")
             }
         default:
             break

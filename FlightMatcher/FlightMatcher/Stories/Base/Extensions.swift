@@ -22,7 +22,7 @@ extension UIViewController {
         } else if let presentedViewController = presentedViewController {
             presentedViewController.presentFromVisible(viewController, animated: flag, completion: completion)
         } else {
-            present(viewControllerToPresent, animated: flag, completion: completion)
+            present(viewController, animated: flag, completion: completion)
         }
     }
 }

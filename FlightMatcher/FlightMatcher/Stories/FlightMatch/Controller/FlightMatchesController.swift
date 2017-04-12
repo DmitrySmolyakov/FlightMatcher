@@ -80,11 +80,11 @@ extension FlightMatchesController {
 
         if !params.isEmpty {
             Filter.filter(requests: dataSource, params: params, success: { filtered in
-                guard filtered?.isEmpty else {
-                    filteredDataSource = dataSource
-                    return
+                if let filtered = filtered {
+                    filteredDataSource = filtered
+                } else {
+                    filteredDataSource = nil
                 }
-                filteredDataSource = filtered
             }, error: { _ in })
         }
     }
@@ -105,8 +105,6 @@ extension FlightMatchesController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let flightMatchCell = ce
-
         let cell = tableView.dequeueReusableCell(withIdentifier: FlightMatchCell.reuseIdentifier(),
                                                  for: indexPath) as! FlightMatchCell
         let request = filteredDataSource?[indexPath.row]
