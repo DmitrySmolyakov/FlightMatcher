@@ -13,6 +13,7 @@ class FlightMatchesController: UIViewController {
     var filterData: FilterData?
 
     @IBOutlet weak var tableView: UITableView!
+
     @IBAction func filter(_ sender: UIButton) {
         let vc = FilterController(filterData)
         vc.delegate = self
@@ -53,40 +54,13 @@ extension FlightMatchesController {
     }
 
     func filter(filterdata: FilterData?) {
-
-        var params = [String: Any]()
-
-        if filterdata?.dateFrom != nil && filterdata?.dateFrom != "" {
-            let double = UnixDateConvertor.convert(string: (filterdata?.dateFrom)!, format: "MMM d, h:mm a")
-            params["dateFrom"] = UnixDateConvertor.convert(unixtime:double)
-        }
-
-        if filterdata?.dateTo != nil && filterdata?.dateTo != "" {
-            let double = UnixDateConvertor.convert(string: (filterdata?.dateTo)!, format: "MMM d, h:mm a")
-            params["dateTo"] = UnixDateConvertor.convert(unixtime:double)
-        }
-
-        if filterdata?.cityTo != nil && filterdata?.cityTo != "" {
-            params["cityTo"] = filterdata?.cityTo
-        }
-
-        if filterdata?.cityFrom != nil && filterdata?.cityFrom != "" {
-            params["cityFrom"] = filterdata?.cityFrom
-        }
-
-        if filterdata?.flightNumber != nil && filterdata?.flightNumber != "" {
-            params["flightNumber"] = filterData?.flightNumber
-        }
-
-        if !params.isEmpty {
-            Filter.filter(requests: dataSource, params: params, success: { filtered in
-                if let filtered = filtered {
-                    filteredDataSource = filtered
-                } else {
-                    filteredDataSource = nil
-                }
-            }, error: { _ in })
-        }
+        Filter.filter(requests: dataSource, params: self.filterData!, success: { filtered in
+            if let filtered = filtered {
+                filteredDataSource = filtered
+            } else {
+                filteredDataSource = nil
+            }
+        }, error: { _ in })
     }
 
     func setupController() {

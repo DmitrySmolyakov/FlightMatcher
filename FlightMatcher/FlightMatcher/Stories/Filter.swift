@@ -20,38 +20,35 @@ class Filter {
     typealias SuccessHandler = ([Request]?) -> Void
     typealias ErrorHandler = (String) -> Void
 
-    public class func filter(requests: [Request]?, params: [String: Any],
+    public class func filter(requests: [Request]?, params: FilterData,
                              success: SuccessHandler, error: ErrorHandler) {
 
-        var sortedItems: [Request]?
+        var sortedItems = requests
 
-        for (key, value) in params {
-            switch key {
-            case "cityTo":
-                if let toCity = value as? String {
-                    sortedItems = requests?.filter({ $0.to.city == toCity })
-                }
-            case "cityFrom":
-                if let cityFrom = value as? String {
-                    sortedItems = sortedItems?.filter({ $0.from.city == cityFrom })
-                }
-            case "flightNumber":
-                if let flightNumber = value as? String {
-                    sortedItems = sortedItems?.filter({ $0.flightNumber == flightNumber })
-                }
-            case "dateFrom":
-                if let dateFrom = value as? Date {
-                    sortedItems = sortedItems?.filter({ $0.dateFrom == dateFrom })
-                }
-            case "dateTo":
-                if let dateTo = value as? Date {
-                    sortedItems = sortedItems?.filter({ $0.dateTo == dateTo })
-                }
-            default:
-                error("Error during paramater pass")
-                break
-            }
+        if let cityTo = params.cityTo, !cityTo.isEmpty {
+            sortedItems = sortedItems?.filter({ $0.to.city == cityTo })
         }
+
+        if let cityFrom = params.cityFrom, !cityFrom.isEmpty {
+            sortedItems = sortedItems?.filter({ $0.from.city == cityFrom })
+        }
+
+        if let flightNumber = params.flightNumber, !flightNumber.isEmpty {
+            sortedItems = sortedItems?.filter({ $0.flightNumber == flightNumber })
+        }
+
+        if let dateFrom = params.dateFrom, !dateFrom.isEmpty {
+            let doubleDate = UnixDateConvertor.convert(string: dateFrom, format: "MMM d, h:mm a")
+            let date = UnixDateConvertor.convert(unixtime: doubleDate)
+            sortedItems = sortedItems?.filter({ $0.dateFrom == date })
+        }
+
+        if let dateTo = params.dateTo, !dateTo.isEmpty {
+            let doubleDate = UnixDateConvertor.convert(string: dateTo, format: "MMM d, h:mm a")
+            let date = UnixDateConvertor.convert(unixtime: doubleDate)
+            sortedItems = sortedItems?.filter({ $0.dateTo == date })
+        }
+
        success(sortedItems)
     }
 }

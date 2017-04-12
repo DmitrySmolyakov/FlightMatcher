@@ -55,6 +55,9 @@ extension FilterController {
         setupPicker()
         setupFields()
         filterView.delegate = self
+        let tapGestureRecognize = UITapGestureRecognizer(target: self, action: #selector(self.dismissDate))
+        view.addGestureRecognizer(tapGestureRecognize)
+
     }
 
     func preloadDataIfPossible() {
@@ -103,7 +106,7 @@ extension FilterController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         switch textField {
         case filterView.cityToField:
-            if filterView.cityFromField.text?.isEmpty ?? true {
+            if filterView.cityToField.text?.isEmpty ?? true {
                 filterView.cityToPicker.selectRow(0, inComponent: 0, animated: true)
                 pickerView(filterView.cityToPicker, didSelectRow: 0, inComponent: 0)
             }
@@ -125,6 +128,10 @@ extension FilterController: UITextFieldDelegate {
         default:
             break
         }
+    }
+
+    func dismissDate(_ gestureRecognizer: UIGestureRecognizer) {
+        self.view.endEditing(true)
     }
 }
 
