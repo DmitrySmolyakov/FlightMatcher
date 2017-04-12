@@ -69,6 +69,17 @@ extension FilterController {
             filterView.flightNumberField.text = filterData?.flightNumber
         }
     }
+
+    func findRow(string: String) -> Int? {
+        if let cities = cities, !cities.isEmpty {
+            for (index, element) in cities.enumerated() {
+                if element == string {
+                    return index
+                }
+            }
+        }
+        return nil
+    }
 }
 
 // MARK: - FilterViewDelegate
@@ -109,11 +120,21 @@ extension FilterController: UITextFieldDelegate {
             if filterView.cityToField.text?.isEmpty ?? true {
                 filterView.cityToPicker.selectRow(0, inComponent: 0, animated: true)
                 pickerView(filterView.cityToPicker, didSelectRow: 0, inComponent: 0)
+            } else {
+                if let row = findRow(string: filterView.cityToField.text!) {
+                    filterView.cityToPicker.selectRow(row, inComponent: 0, animated: true)
+                    pickerView(filterView.cityToPicker, didSelectRow: row, inComponent: 0)
+                }
             }
         case filterView.cityFromField:
             if filterView.cityFromField.text?.isEmpty ?? true {
                 filterView.cityFromPicker.selectRow(0, inComponent: 0, animated: true)
                 pickerView(filterView.cityFromPicker, didSelectRow: 0, inComponent: 0)
+            } else {
+                if let row = findRow(string: filterView.cityFromField.text!) {
+                    filterView.cityFromPicker.selectRow(row, inComponent: 0, animated: true)
+                    pickerView(filterView.cityFromPicker, didSelectRow: row, inComponent: 0)
+                }
             }
         case filterView.dateFromField:
             if filterView.dateFromField.text?.isEmpty ?? true {

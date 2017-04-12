@@ -43,7 +43,7 @@ extension Request {
         }
 
         guard let flightNumber = String(array["flightNumber"].stringValue) else {
-         return nil
+            return nil
         }
 
         guard let unixFrom = Double(array["dateFrom"].stringValue) else {
